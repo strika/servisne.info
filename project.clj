@@ -2,15 +2,16 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [lib-noir "0.7.9"]
-                 [compojure "1.1.6"]
-                 [ring-server "0.3.1"]
-                 [selmer "0.5.8"]
                  [com.taoensso/timbre "2.7.1"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/tower "2.0.1"]
+                 [compojure "1.1.6"]
+                 [enlive "1.1.5"]
+                 [environ "0.4.0"]
+                 [lib-noir "0.7.9"]
                  [markdown-clj "0.9.40"]
-                 [environ "0.4.0"]]
+                 [ring-server "0.3.1"]
+                 [selmer "0.5.8"]]
 
   :repl-options {:init-ns servisne-info.repl}
   :plugins [[lein-ring "0.8.10"]
