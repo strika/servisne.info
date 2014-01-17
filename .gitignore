@@ -1,6 +1,10 @@
+/target
+/lib
+/classes
+/checkouts
 pom.xml
-*jar
-/lib/
-/classes/
-/targets/
-.lein-deps-sum
+*.jar
+*.class
+/.lein-*
+/.env
+*.log
