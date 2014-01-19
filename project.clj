@@ -10,6 +10,7 @@
                  [environ "0.4.0"]
                  [lib-noir "0.7.9"]
                  [markdown-clj "0.9.40"]
+                 [org.clojure/tools.nrepl "0.2.3"]
                  [ring-server "0.3.1"]
                  [selmer "0.5.8"]]
 

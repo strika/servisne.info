@@ -4,9 +4,9 @@
 (defn info-links-page []
   (en/html-resource (java.net.URL. "http://www.021.rs/Novi-Sad/Servisne-informacije/")))
 
-(defn info-links []
+(defn info-links [html]
   (map
     #(->  % :attrs :href)
     (en/select
-      (info-links-page)
+      html
       [:div.najava :div.leading :a])))
