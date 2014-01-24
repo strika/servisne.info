@@ -1,5 +1,6 @@
 (ns servisne-info.scrape.ns-rs
-  (:require [net.cgrand.enlive-html :as en]))
+  (:require [net.cgrand.enlive-html :as en]
+            [clojure.string :as s]))
 
 (def info-site
   {:url "http://www.021.rs"
@@ -24,3 +25,9 @@
     (en/select
       html
       [:div.najava :div.leading :a])))
+
+(defn info-page-title [html]
+  (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))
+
+(defn info-page [html]
+  {:title (info-page-title html)})
