@@ -9,7 +9,11 @@
   (is (= (info-links-url info-site) "http://www.021.rs/Novi-Sad/Servisne-informacije/")))
 
 (deftest info-links-test
-  (let [links (info-links html-fixture)]
+  (let [links (info-links info-site html-fixture)]
     (is (= (count links) 30))
-    (is (= (first links) "/Novi-Sad/Servisne-informacije/Iskljucenja-struje-za-20-januar-2.html"))
-    (is (= (last links) "/Novi-Sad/Servisne-informacije/Od-srede-ponovo-dacki-polasci.html"))))
+    (is (= (first links) "http://www.021.rs/Novi-Sad/Servisne-informacije/Iskljucenja-struje-za-20-januar-2.html"))
+    (is (= (last links) "http://www.021.rs/Novi-Sad/Servisne-informacije/Od-srede-ponovo-dacki-polasci.html"))))
+
+(deftest path-to-url-test
+  (is (= (path-to-url info-site "/Novi-Sad/Servisne-informacije/")
+         "http://www.021.rs/Novi-Sad/Servisne-informacije/")))
