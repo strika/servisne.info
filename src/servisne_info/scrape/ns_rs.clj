@@ -29,5 +29,11 @@
 (defn info-page-title [html]
   (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))
 
+(defn info-page-content [html]
+  (apply str
+         (map s/trim
+              (en/select html [:div#content en/text-node]))))
+
 (defn info-page [html]
-  {:title (info-page-title html)})
+  {:title (info-page-title html)
+   :content (info-page-content html)})

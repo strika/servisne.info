@@ -21,4 +21,5 @@
 
 (deftest info-page-test
   (let [page (info-page info-page-fixture)]
-    (is (= (:title page) "Proširena Detelinarska pijaca"))))
+    (is (= (:title page) "Proširena Detelinarska pijaca"))
+    (is (.startsWith (:content page) "Novoizgrađeni deo Detelinarske pijace"))))
