@@ -21,10 +21,14 @@
 (defn info-links [site html]
   (map
     (fn [a]
-      (path-to-url site (:href (:attrs a))))
+      {:title (s/trim (first (:content a)))
+       :url (path-to-url site (:href (:attrs a)))})
     (en/select
       html
-      [:div.najava :div.leading :a])))
+      [:div.najava :div.leading :h2.contentheading :a])))
+
+(defn links []
+  (info-links info-site (info-links-page info-site)))
 
 (defn info-page-title [html]
   (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))

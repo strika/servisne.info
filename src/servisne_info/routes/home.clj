@@ -1,11 +1,13 @@
 (ns servisne-info.routes.home
   (:use compojure.core)
   (:require [servisne-info.views.layout :as layout]
-            [servisne-info.util :as util]))
+            [servisne-info.scrape.ns-rs :as scrape]))
 
 (defn home-page []
-  (layout/render
-    "home.html" {:content (util/md->html "/md/docs.md")}))
+  (let [info-links (scrape/links)]
+    (layout/render
+      "home.html"
+      {:info-links info-links})))
 
 (defn about-page []
   (layout/render "about.html"))

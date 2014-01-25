@@ -15,9 +15,13 @@
 
 (deftest info-links-test
   (let [links (info-links info-site links-page-fixture)]
-    (is (= (count links) 30))
-    (is (= (first links) "http://www.021.rs/Novi-Sad/Servisne-informacije/Iskljucenja-struje-za-20-januar-2.html"))
-    (is (= (last links) "http://www.021.rs/Novi-Sad/Servisne-informacije/Od-srede-ponovo-dacki-polasci.html"))))
+    (is (= (count links) 10))
+    (is (= (first links)
+           {:title "Isključenja struje za 20. januar"
+            :url "http://www.021.rs/Novi-Sad/Servisne-informacije/Iskljucenja-struje-za-20-januar-2.html"}))
+    (is (= (last links)
+           {:title "Od srede ponovo đački polasci"
+            :url "http://www.021.rs/Novi-Sad/Servisne-informacije/Od-srede-ponovo-dacki-polasci.html"}))))
 
 (deftest info-page-test
   (let [page (info-page info-page-fixture)]
