@@ -26,6 +26,9 @@
       html
       [:div.najava :div.leading :a])))
 
+(defn links []
+  (info-links info-site (info-links-page info-site)))
+
 (defn info-page-title [html]
   (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))
 

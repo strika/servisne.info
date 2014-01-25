@@ -7,7 +7,13 @@
 
  <div class="row-fluid">
     <div class="span8">
-    {{content|safe}}
+      <h2>Poslednje servisne informacije<h2>
+
+      <ul>
+        {% for link in info-links %}
+          <li><a href="{{link}}">{{link}}</a></li>
+        {% endfor %}
+      </ul>
     </div>
  </div>
 {% endblock %}
