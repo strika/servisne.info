@@ -8,6 +8,7 @@
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
+                 [http-kit "2.1.16"]
                  [lib-noir "0.7.9"]
                  [org.clojure/tools.nrepl "0.2.3"]
                  [ring-server "0.3.1"]
@@ -19,6 +20,7 @@
   :ring {:handler servisne-info.handler/app
          :init    servisne-info.handler/init
          :destroy servisne-info.handler/destroy}
+  :main servisne-info.webapp
   :profiles
   {:uberjar {:aot :all}
    :production {:ring {:open-browser? false
