@@ -1,12 +1,13 @@
 (ns servisne-info.handler  
-  (:require [compojure.core :refer [defroutes]]            
-            [servisne-info.routes.home :refer [home-routes]]
-            [noir.util.middleware :as middleware]
+  (:require [com.postspectacular.rotor :as rotor]
+            [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
-            [taoensso.timbre :as timbre]
-            [com.postspectacular.rotor :as rotor]
+            [environ.core :refer [env]]
+            [monger.core :as monger]
+            [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
-            [environ.core :refer [env]]))
+            [servisne-info.routes.home :refer [home-routes]]
+            [taoensso.timbre :as timbre]))
 
 (defroutes app-routes
   (route/resources "/")
@@ -18,6 +19,14 @@
    an app server such as Tomcat
    put any initialization code here"
   []
+
+  (let [username (env :mongo-user)
+        password (env :mongo-password)
+        db       (env :mongo-db)]
+    (monger/connect!)
+    (monger/use-db! db)
+    (monger/authenticate (monger/get-db db) username (.toCharArray password)))
+
   (timbre/set-config!
     [:appenders :rotor]
     {:min-level :info
@@ -37,6 +46,7 @@
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
+  (monger/disconnect!)
   (timbre/info "servisne-info is shutting down..."))
 
 (defn template-error-page [handler]
