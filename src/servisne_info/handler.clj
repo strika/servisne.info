@@ -20,9 +20,9 @@
    put any initialization code here"
   []
 
-  (let [username (env :mongo-user)
-        password (env :mongo-password)
-        db       (env :mongo-db)]
+  (let [username (or (env :mongo-user) "")
+        password (or (env :mongo-password) "")
+        db       (or (env :mongo-db) "servisne")]
     (monger/connect!)
     (monger/use-db! db)
     (monger/authenticate (monger/get-db db) username (.toCharArray password)))
