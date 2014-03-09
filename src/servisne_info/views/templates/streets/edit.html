@@ -1,0 +1,17 @@
+{% extends "servisne_info/views/templates/base.html" %}
+{% block content %}
+<h2>Unesite ulice koje vas interesuju:</h2>
+
+<div class="row-fluid">
+  <div class="span8">
+    <form action="/streets/update" method="post" role="form">
+      <div class="form-group">
+        <input type="hidden" name="email" id="email" value="{{email}}">
+        <label for="streets">Ulice:</label>
+        <textarea id="streets" name="streets" class="form-control" rows="3" placeholder="Bulevar oslobođenja"></textarea>
+      </div>
+      <input type="submit" class="btn btn-default" value="Sačuvaj">
+    </form>
+  </div>
+</div>
+{% endblock %}

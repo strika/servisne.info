@@ -7,6 +7,8 @@
             [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
             [servisne-info.routes.home :refer [home-routes]]
+            [servisne-info.routes.users :refer [users-routes]]
+            [servisne-info.routes.streets :refer [streets-routes]]
             [taoensso.timbre :as timbre]))
 
 (defroutes app-routes
@@ -20,9 +22,9 @@
    put any initialization code here"
   []
 
-  (let [username (env :mongo-user)
-        password (env :mongo-password)
-        db       (env :mongo-db)]
+  (let [username (or (env :mongo-user) "")
+        password (or (env :mongo-password) "")
+        db       (or (env :mongo-db) (and (= (env :clj-env) "test") "servisne-test") "servisne")]
     (monger/connect!)
     (monger/use-db! db)
     (monger/authenticate (monger/get-db db) username (.toCharArray password)))
@@ -64,7 +66,7 @@
 
 (def app (middleware/app-handler
            ;; add your application routes here
-           [home-routes app-routes]
+           [home-routes users-routes streets-routes app-routes]
            ;; add custom middleware here
            :middleware [template-error-page]
            ;; add access rules here
