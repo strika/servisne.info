@@ -25,11 +25,13 @@
             {% endblock %}
         </div>
         <!-- scripts and styles -->
-        {% style "/css/bootstrap-theme.min.css" %}
         {% style "/css/bootstrap.min.css" %}
         {% style "/css/screen.css" %}
+        {% style "/css/style.css" %}
+
         <script src="//code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
         {% script "/js/bootstrap.min.js" %}
+
         <script type="text/javascript">
             var context = "{{servlet-context}}";
         </script>
