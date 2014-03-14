@@ -8,5 +8,5 @@
 (deftest homepage
   (-> (session app)
       (visit "/")
-      (within [:div.jumbotron :h1]
+      (within [:div.jumbotron :h2]
         (has (text? "Dobrodošli na servisne.info")))))

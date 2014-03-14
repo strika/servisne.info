@@ -1,11 +1,38 @@
 {% extends "servisne_info/views/templates/base.html" %}
 {% block content %}
-  <h1>Dobrodošli na servisne.info</h1>
-  <p>Servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji sami odaberete.</p>
-  <p>
-    Izvori servisnih informacija:
-    <ul>
-      <a href="http://www.021.rs">021.rs</a>
-    </ul>
-  </p>
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Dobrodošli na servisne.info</h2>
+
+      <p>servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
+      <p>Informacije se preuzimaju sa <a href="http://021.rs" target="_blank" class="a-green">021.rs.</a></p>
+
+      <br/>
+
+      <p>Servis je baziran na slobodnom softveru. Kod možete preuzeti sa <a href="http://github.com/strika/servisne.info" target="_blank" class="a-green">GitHuba.</a></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="autori text-centered">Autori</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-2 avatar-tanja">
+      <div class="avatar tanja">
+        <img src="{{servlet-context}}/images/tanja-bw.jpg">
+      </div>
+      <br/><br/>
+      <p>Za izgled servisa pobrinula se <a href="http://github.com/tanjass" target="_blank" class="a-green">Tanja</a>.</p>
+    </div>
+    <div class="col-md-4 col-md-offset-">
+      <div class="avatar nebojsa">
+        <img src="{{servlet-context}}/images/nebojsa-bw.jpg">
+      </div>
+      <br/><br/>
+      <p>Za zupčanike zadužen je <a href="http://github.com/strika" target="_blank" class="a-green">Nebojša</a>.</p>
+    </div>
+  </div>	
 {% endblock %}

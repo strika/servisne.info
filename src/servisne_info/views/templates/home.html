@@ -1,25 +1,43 @@
 {% extends "servisne_info/views/templates/base.html" %}
 {% block content %}
+
 <div class="jumbotron">
-  <h1>Dobrodošli na servisne.info</h1>
-  <p>Servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
-  <p>
-  Izvori servisnih informacija:
-  <ul>
-    <a href="http://www.021.rs">021.rs</a>
-  </ul>
-  </p>
+  <h2>Dobrodošli na servisne.info</h2>
+  <p>servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
 </div>
 
-<div class="row-fluid">
-  <div class="span8">
-    <a href="/users/new" class="btn btn-primary btn-lg active" role="button">Prijavi me</a>
+<div class="row text-centered">
+  <div class="col-md-12">
+    <a href="{{servlet-context}}/users/new" class="btn btn-primary btn-huge active" role="button">Prijavi me</a>
   </div>
 </div>
 
-<div class="row-fluid">
-  <div class="span8">
-    <h2>Poslednje servisne informacije<h2>
+<div class="jumbotron steps-explainer">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-centered">Prijavljivanje se vrši u 2 jednostavna koraka</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 text-centered">
+      <h4>Unos imejl adrese</h4>
+      <div class="step-explainer step-1-explainer">
+        <img src="{{servlet-context}}/images/korak1-bw.jpg">
+      </div>
+    </div>
+    <div class="col-md-6 text-centered">
+      <h4>Unos ulica</h4>
+      <div class="step-explainer step-2-explainer">
+        <img src="{{servlet-context}}/images/korak2-bw.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 latest-info">
+    <h2>Poslednje servisne informacije</h2>
 
     <ul>
       {% for link in info-links %}
