@@ -4,7 +4,6 @@
         clojure.test)
   (:require [servisne-info.handler :refer [app]]))
 
-
 (deftest homepage
   (-> (session app)
       (visit "/")
