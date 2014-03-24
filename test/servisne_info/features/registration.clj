@@ -35,4 +35,8 @@
         (press "Sačuvaj")
         (within [:h2]
           (has (text? "Podešavanje završeno!")))
+        (within [:.email]
+          (has (text? "john@example.com")))
+        (within [:.streets]
+          (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user))))
