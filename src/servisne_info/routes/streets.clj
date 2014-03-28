@@ -9,7 +9,8 @@
 
 (defn streets-update [email streets]
   (mc/update "users" {:email email} {$set {:streets streets}})
-  (layout/render "streets/update.html"))
+  (layout/render "streets/update.html"
+                 {:email email :streets streets}))
 
 (defroutes streets-routes
   (GET "/streets/edit" [email] (streets-edit email))
