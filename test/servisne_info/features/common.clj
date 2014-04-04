@@ -8,6 +8,5 @@
   (t))
 
 (defn fixtures-each [t]
-  (fn [t]
-    (mc/remove "users")
-    (t)))
+  (mc/remove "users")
+  (t))
