@@ -5,7 +5,8 @@
             [servisne-info.views.layout :as layout]))
 
 (defn streets-edit [email]
-  (layout/render "streets/edit.html" {:email email}))
+  (let [user (mc/find-one-as-map "users" {:email email})]
+    (layout/render "streets/edit.html" user)))
 
 (defn streets-update [email streets]
   (mc/update "users" {:email email} {$set {:streets streets}})

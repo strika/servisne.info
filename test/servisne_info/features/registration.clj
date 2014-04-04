@@ -17,6 +17,9 @@
     (is (not (nil? db-user)))
     (is (= (:streets db-user) streets))))
 
+(defn create-user [user]
+  (mc/insert "users" user))
+
 (deftest registration
   (let [user {:email "john@example.com" :streets "Mileticeva, Bulevar Oslobodjenja"}]
     (-> (session app)
@@ -34,3 +37,15 @@
         (within [:.streets]
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user))))
+
+(deftest update-streets
+  (let [user {:email "john@example.com" :streets "Mileticeva, Bulevar Oslobodjenja"}]
+    (create-user user)
+    (-> (session app)
+        (visit "/")
+        (follow "Prijavi me")
+        (fill-in :#email (:email user))
+        (press "Sledeći korak →")
+        (follow-redirect)
+        (within [:#streets]
+          (has (text? (:streets user)))))))
