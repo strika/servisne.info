@@ -10,6 +10,7 @@
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
+                 [expectations "2.0.7"]
                  [http-kit "2.1.16"]
                  [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
@@ -21,8 +22,9 @@
                  [raven-clj "1.0.0"]]
 
   :repl-options {:init-ns servisne-info.repl}
-  :plugins [[lein-ring "0.8.10"]
-            [lein-environ "0.4.0"]]
+  :plugins [[lein-expectations "0.0.7"]
+            [lein-environ "0.4.0"]
+            [lein-ring "0.8.10"]]
   :ring {:handler servisne-info.handler/app
          :init    servisne-info.handler/init
          :destroy servisne-info.handler/destroy}
