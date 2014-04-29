@@ -1,13 +1,8 @@
 (ns servisne-info.test.handler
-  (:use clojure.test
+  (:use expectations
         ring.mock.request
         servisne-info.handler))
 
-(deftest test-app
-  (testing "main route"
-    (let [response (app (request :get "/"))]
-      (is (= (:status response) 200))))
+(expect 200 (:status (app (request :get "/"))))
 
-  (testing "not-found route"
-    (let [response (app (request :get "/invalid"))]
-      (is (= (:status response) 404)))))
+(expect 404 (:status (app (request :get "/invalid"))))
