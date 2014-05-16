@@ -3,8 +3,7 @@
         kerodon.test
         clojure.test
         servisne-info.features.common)
-  (:require [monger.core :as mg]
-            [monger.collection :as mc]
+  (:require [monger.collection :as mc]
             [servisne-info.handler :refer [app init]]))
 
 (use-fixtures :once fixtures-once)
