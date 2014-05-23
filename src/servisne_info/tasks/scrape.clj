@@ -2,6 +2,4 @@
   (:use servisne-info.scrape.worker))
 
 (defn -main [& args]
-  (println "Scrape start")
-  (save-links)
-  (println "Scrape end"))
+  (println "Scraped" (save-links) "new links"))

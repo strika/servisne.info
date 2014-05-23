@@ -12,8 +12,9 @@
   (let [power-outage {:title "Power outage"
                       :url "http://example.com/power_outage"}]
     (with-redefs [ns-scraper/links (constantly [power-outage])]
-      (save-links)
-      (let [news (mc/find-maps "news")
+      (let [links-count (save-links)
+            news (mc/find-maps "news")
             latest (first news)]
+        (is (= 1 links-count))
         (is (= (:title latest) (:title power-outage)))
         (is (= (:url latest) (:url power-outage)))))))
