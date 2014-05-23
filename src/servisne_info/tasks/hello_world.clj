@@ -1,6 +1,4 @@
-(ns servisne-info.tasks.hello-world
-  (:require [taoensso.timbre :as timbre]))
+(ns servisne-info.tasks.hello-world)
 
 (defn -main [& args]
-  (timbre/info "Hello World!")
   (println "Hello World!"))

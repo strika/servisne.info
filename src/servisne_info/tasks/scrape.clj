@@ -1,8 +1,7 @@
 (ns servisne-info.tasks.scrape
-  (:use servisne-info.scrape.worker)
-  (:require [taoensso.timbre :as timbre]))
+  (:use servisne-info.scrape.worker))
 
 (defn -main [& args]
-  (timbre/info "Scrape start")
+  (println "Scrape start")
   (save-links)
-  (timbre/info "Scrape end"))
+  (println "Scrape end"))
