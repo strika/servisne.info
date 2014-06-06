@@ -8,7 +8,7 @@
   (mq/with-collection "news"
     (mq/find {})
     (mq/fields [:url :title :created-at])
-    (mq/sort (array-map :created-at 1))
+    (mq/sort (array-map :created-at -1))
     (mq/limit 10)))
 
 (defn home-page []
