@@ -3,9 +3,9 @@
             [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
             [environ.core :refer [env]]
-            [monger.core :as monger]
             [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
+            [servisne-info.persistence :refer [db-connect db-disconnect]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
             [servisne-info.routes.streets :refer [streets-routes]]
@@ -34,15 +34,7 @@
     [:shared-appender-config :rotor]
     {:path "servisne_info.log" :max-size (* 512 1024) :backlog 10})
 
-  (let [host     (or (env :openshift-mongodb-db-host) "localhost")
-        port     (Integer/parseInt (or (env :openshift-mongodb-db-port) "27017"))
-        username (or (env :openshift-mongodb-db-username) "")
-        password (or (env :openshift-mongodb-db-password) "")
-        db       (or (env :openshift-app-name) (and (= (env :clj-env) "test") "servisne-test") "servisne")]
-    (timbre/info (str "servisne-info connecting to MongoDB: " host ":" port "/" db))
-    (monger/connect! {:host host :port port})
-    (monger/use-db! db)
-    (monger/authenticate (monger/get-db db) username (.toCharArray password)))
+  (db-connect)
 
   (if (env :selmer-dev) (parser/cache-off!))
   (timbre/info "servisne-info started successfully"))
@@ -51,7 +43,7 @@
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
-  (monger/disconnect!)
+  (db-disconnect)
   (timbre/info "servisne-info is shutting down..."))
 
 (defn template-error-page [handler]

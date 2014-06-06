@@ -9,4 +9,5 @@
 
 (defn fixtures-each [t]
   (mc/remove "users")
+  (mc/remove "news")
   (t))
