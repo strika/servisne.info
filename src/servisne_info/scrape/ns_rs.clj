@@ -7,7 +7,7 @@
 
 (def info-site
   {:url "http://www.021.rs"
-   :links-path "/novi-sad/servisne-informacije.html"})
+   :links-path "/Novi-Sad/Servisne-informacije"})
 
 ; Private
 
