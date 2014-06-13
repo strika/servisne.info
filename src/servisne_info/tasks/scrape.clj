@@ -1,6 +1,6 @@
 (ns servisne-info.tasks.scrape
   (:use servisne-info.scrape.worker)
-  (:require [servisne-info.persistence :refer [db-connect db-disconnect]]))
+  (:require [servisne-info.repository :refer [db-connect db-disconnect]]))
 
 (defn -main [& args]
   (db-connect)
