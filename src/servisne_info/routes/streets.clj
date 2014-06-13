@@ -1,15 +1,14 @@
 (ns servisne-info.routes.streets
   (:use compojure.core)
-  (:require [monger.collection :as mc]
-            [monger.operators :refer :all]
+  (:require [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
 (defn streets-edit [email]
-  (let [user (mc/find-one-as-map "users" {:email email})]
+  (let [user (repo/find-user email)]
     (layout/render "streets/edit.html" user)))
 
 (defn streets-update [email streets]
-  (mc/update "users" {:email email} {$set {:streets streets}})
+  (repo/update-user email {:streets streets})
   (layout/render "streets/update.html"
                  {:email email :streets streets}))
 

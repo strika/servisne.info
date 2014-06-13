@@ -5,7 +5,7 @@
             [environ.core :refer [env]]
             [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
-            [servisne-info.persistence :refer [db-connect db-disconnect]]
+            [servisne-info.repository :refer [db-connect db-disconnect]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
             [servisne-info.routes.streets :refer [streets-routes]]

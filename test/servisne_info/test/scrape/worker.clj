@@ -1,4 +1,4 @@
-(ns servisne-info.test.scrape.worker-test
+(ns servisne-info.test.scrape.worker
   (:use clojure.test
         servisne-info.scrape.worker
         servisne-info.features.common)
