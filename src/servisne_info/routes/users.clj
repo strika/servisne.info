@@ -1,11 +1,11 @@
 (ns servisne-info.routes.users
   (:use compojure.core)
-  (:require [monger.collection :as mc]
-            [noir.response :as response]
+  (:require [noir.response :as response]
+            [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
 (defn- create-user [email]
-  (mc/insert "users" {:email email :streets {}}))
+  (repo/create-user {:email email :streets {}}))
 
 (defn users-new []
   (layout/render "users/new.html"))
