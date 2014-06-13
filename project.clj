@@ -10,7 +10,7 @@
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
                  [http-kit "2.1.16"]
-                 [kerodon "0.3.0"]
+                 [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
                  [org.clojure/tools.nrepl "0.2.3"]
                  [ring-server "0.3.1"]
