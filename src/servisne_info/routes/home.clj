@@ -1,20 +1,13 @@
 (ns servisne-info.routes.home
   (:use compojure.core)
-  (:require [monger.query :as mq]
-            [servisne-info.views.layout :as layout]
-            [servisne-info.scrape.ns-rs :as scrape]))
-
-(defn- latest-news []
-  (mq/with-collection "news"
-    (mq/find {})
-    (mq/fields [:url :title :created-at])
-    (mq/sort (array-map :created-at -1))
-    (mq/limit 10)))
+  (:require [servisne-info.scrape.ns-rs :as scrape]
+            [servisne-info.repository :as repo]
+            [servisne-info.views.layout :as layout]))
 
 (defn home-page []
   (layout/render
     "home.html"
-    {:info-links (latest-news)}))
+    {:info-links (repo/find-latest-news)}))
 
 (defn about-page []
   (layout/render "about.html"))
