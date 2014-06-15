@@ -14,7 +14,8 @@
                  [lib-noir "0.7.9"]
                  [org.clojure/tools.nrepl "0.2.3"]
                  [ring-server "0.3.1"]
-                 [selmer "0.5.8"]]
+                 [selmer "0.5.8"]
+                 [raven-clj "1.0.0"]]
 
   :repl-options {:init-ns servisne-info.repl}
   :plugins [[lein-ring "0.8.10"]
