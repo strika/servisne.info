@@ -1,4 +1,5 @@
 (ns servisne-info.handler  
+  (:use [raven-clj.ring :only [wrap-sentry]])
   (:require [com.postspectacular.rotor :as rotor]
             [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
@@ -46,6 +47,12 @@
   (db-disconnect)
   (timbre/info "servisne-info is shutting down..."))
 
+(defn capture-exceptions [handler]
+  (let [sentry-dsn (env :sentry-dsn)]
+    (if sentry-dsn
+      (wrap-sentry handler sentry-dsn)
+      handler)))
+
 (defn template-error-page [handler]
   (if (env :selmer-dev)
     (fn [request]
@@ -63,7 +70,7 @@
            ;; add your application routes here
            [home-routes users-routes streets-routes app-routes]
            ;; add custom middleware here
-           :middleware [template-error-page]
+           :middleware [template-error-page capture-exceptions]
            ;; add access rules here
            :access-rules []
            ;; serialize/deserialize the following data formats
