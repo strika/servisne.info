@@ -1,4 +1,4 @@
-(ns servisne-info.test.scrape.ns-rs-test
+(ns servisne-info.test.scrape.ns-rs
   (:use clojure.test
         servisne-info.test.utils
         servisne-info.scrape.ns-rs))
@@ -20,3 +20,7 @@
   (let [page (info-page info-page-fixture)]
     (is (= (:title page) "Proširena Detelinarska pijaca"))
     (is (.startsWith (:content page) "Novoizgrađeni deo Detelinarske pijace"))))
+
+(deftest info-page-content-test
+  (let [content (info-page-content info-page-fixture)]
+    (is (.startsWith content "Novoizgrađeni deo Detelinarske pijace"))))
