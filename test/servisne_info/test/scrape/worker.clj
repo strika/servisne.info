@@ -1,6 +1,6 @@
 (ns servisne-info.test.scrape.worker
   (:use clojure.test
-        servisne-info.test.utils
+        servisne-info.test-utils
         servisne-info.scrape.worker
         servisne-info.features.common)
   (:require [monger.collection :as mc]

@@ -2,9 +2,6 @@
   (:use clojure.test
         servisne-info.utils))
 
-(defn load-cassette [cassette]
-  (read-string (slurp (str "test/servisne_info/test/cassettes/" cassette ".clj"))))
-
 (deftest str-partition-test
   (let [text "abcdefgh"]
     (is (= (str-partition text 3)

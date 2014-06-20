@@ -1,6 +1,6 @@
 (ns servisne-info.test.scrape.ns-rs
   (:use clojure.test
-        servisne-info.test.utils
+        servisne-info.test-utils
         servisne-info.scrape.ns-rs))
 
 (def links-page-fixture (load-cassette "links_page"))
