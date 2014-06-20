@@ -1,0 +1,9 @@
+{% block content %}
+Dobar dan,
+
+Ovo je test poruka.
+
+Pozdrav,
+
+servisne.info
+{% endblock  %}

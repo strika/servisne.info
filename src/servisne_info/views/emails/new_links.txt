@@ -1,0 +1,13 @@
+{% block content %}
+Dobar dan,
+
+Pronašli smo vesti koje vas možda zanimaju:
+
+{% for link in links %}
+- {{link}}
+{% endfor %}
+
+Pozdrav,
+
+servisne.info
+{% endblock  %}
