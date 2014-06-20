@@ -1,8 +1,8 @@
-(ns servisne-info.test.scrape.worker
+(ns servisne-info.test.tasks.scrape
   (:use clojure.test
+        servisne-info.features.common
         servisne-info.test-utils
-        servisne-info.scrape.worker
-        servisne-info.features.common)
+        servisne-info.tasks.scrape)
   (:require [monger.collection :as mc]
             [servisne-info.scrape.common :as scrape-common]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
