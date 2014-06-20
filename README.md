@@ -6,7 +6,7 @@ servisne.info is a web app for delivering service informations on your email.
 Visit http://servisne.info to try it out.
 
 [![Build
-Status](https://semaphoreapp.com/api/v1/projects/c1e6a8c7-fd01-4591-9553-1c26bf413ea2/174528/badge.png)](https://semaphoreapp.com)
+Status](https://semaphoreapp.com/api/v1/projects/f451e93c-2dfe-4f5e-bc2f-1b481f9cab9c/196908/badge.png)](https://semaphoreapp.com)
 
 ### Deploy to OpenShift
 
