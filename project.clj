@@ -10,6 +10,7 @@
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
+                 [fuzzy-string "0.1.2-SNAPSHOT"]
                  [http-kit "2.1.16"]
                  [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
