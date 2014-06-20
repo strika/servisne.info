@@ -14,12 +14,12 @@
 (defn- info-page-title [html]
   (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))
 
-(defn- info-page-content [html]
+; Public
+
+(defn info-page-content [html]
   (apply str
          (map s/trim
               (en/select html [:div#content en/text-node]))))
-
-; Public
 
 (defn info-page [html]
   {:title (info-page-title html)
