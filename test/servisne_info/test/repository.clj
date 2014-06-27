@@ -1,11 +1,11 @@
 (ns servisne-info.test.repository
   (:use clojure.test
         servisne-info.repository
-        servisne-info.features.common)
+        servisne-info.test-utils)
   (:require [monger.collection :as mc]))
 
-(use-fixtures :once fixtures-once)
-(use-fixtures :each fixtures-each)
+(use-fixtures :once init-database)
+(use-fixtures :each clean-database)
 
 ; User
 (def user {:email "john@example.com" :streets ["Bulevar oslobodjenja" "Dunavska"]})

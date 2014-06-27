@@ -3,12 +3,12 @@
         kerodon.test
         clojure.test
         servisne-info.utils
-        servisne-info.features.common)
+        servisne-info.test-utils)
   (:require [monger.collection :as mc]
             [servisne-info.handler :refer [app]]))
 
-(use-fixtures :once fixtures-once)
-(use-fixtures :each fixtures-each)
+(use-fixtures :once init-database)
+(use-fixtures :each clean-database)
 
 (deftest homepage
   (let [link {:title "Isključenja struje za 20. januar"
