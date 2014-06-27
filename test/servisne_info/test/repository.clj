@@ -42,6 +42,7 @@
 
 ; News
 (def power-outage {:title "Power outage" :url "http://example.com/power_outage"})
+(def old-news {:title "Old news" :url "http://example.com/old_news" :sent true})
 
 (deftest test-create-news
   (create-news power-outage)
@@ -55,9 +56,22 @@
     (is (= (:title saved-news) (:title power-outage)))
     (is (= (:url saved-news) (:url power-outage)))))
 
+(deftest test-update-news
+  (let [new-attributes {:sent true}]
+    (mc/insert "news" power-outage)
+    (update-news (:url power-outage) new-attributes)
+    (let [saved-news (mc/find-one-as-map "news" {:url (:url power-outage)})]
+      (is (= (:sent saved-news) (:sent new-attributes))))))
+
 (deftest test-find-latest-news
   (let [closed-street {:title "Closed street" :url "http://example.com/closed_street"}]
     (mc/insert "news" power-outage)
     (mc/insert "news" closed-street)
     (is (= (count (find-latest-news)) 2))))
 
+(deftest test-find-unsent-news
+  (mc/insert "news" power-outage)
+  (mc/insert "news" old-news)
+  (let [unsent-news (find-unsent-news)]
+    (is (= 1 (count unsent-news)))
+    (is (= (:url power-outage) (:url (first unsent-news))))))

@@ -36,15 +36,25 @@
   (mc/update "users" {:email email} {$set attributes}))
 
 ; News
+(def news-attributes [:url :title :content :sent :created-at])
+
 (defn create-news [attributes]
   (mc/insert "news" attributes))
 
 (defn find-news [url]
   (mc/find-one-as-map "news" {:url url}))
 
+(defn update-news [url attributes]
+  (mc/update "news" {:url url} {$set attributes}))
+
 (defn find-latest-news []
   (mq/with-collection "news"
     (mq/find {})
-    (mq/fields [:url :title :created-at])
+    (mq/fields news-attributes)
     (mq/sort (array-map :created-at -1))
     (mq/limit 10)))
+
+(defn find-unsent-news []
+  (mq/with-collection "news"
+    (mq/find {:sent nil})
+    (mq/fields news-attributes)))

@@ -16,6 +16,12 @@
                  :subject subject
                  :body body}))
 
+(defn send-news-email [user news]
+  (send-email (:email user)
+              "Servisne informacije"
+              (email/render "new_links.txt"
+                            {:links (map :url news)})))
+
 (defn send-test-email []
   (send-email "nebojsa.stricevic@gmail.com"
               "Test poruka"

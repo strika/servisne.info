@@ -33,5 +33,5 @@
 
 (defn -main [& args]
   (repo/db-connect)
-  (println "Scraped" (save-links) "new links")
+  (println "Scraping new links, count='" (save-links) "'")
   (repo/db-disconnect))
