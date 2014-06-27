@@ -1,6 +1,8 @@
 (ns servisne-info.utils
   (:use fuzzy-string.core))
 
+(def fuzzy-text-search-sensitivity 5)
+
 (defn now []
   (java.util.Date.))
 
@@ -11,5 +13,5 @@
 
 (defn fuzzy-has-text? [s text]
   (let [partitioned-text (str-partition text (count s))]
-    (not-every? #(> % 5)
+    (not-every? #(> % fuzzy-text-search-sensitivity)
                 (map #(levenshtein s %) partitioned-text))))
