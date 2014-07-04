@@ -1,14 +1,13 @@
-(ns servisne-info.test.scrape.worker
+(ns servisne-info.test.tasks.scrape
   (:use clojure.test
-        servisne-info.test.utils
-        servisne-info.scrape.worker
-        servisne-info.features.common)
+        servisne-info.test-utils
+        servisne-info.tasks.scrape)
   (:require [monger.collection :as mc]
             [servisne-info.scrape.common :as scrape-common]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
 
-(use-fixtures :once fixtures-once)
-(use-fixtures :each fixtures-each)
+(use-fixtures :once init-database)
+(use-fixtures :each clean-database)
 
 (def info-page-fixture (load-cassette "info_page"))
 

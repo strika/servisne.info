@@ -8,6 +8,16 @@ Visit http://servisne.info to try it out.
 [![Build
 Status](https://semaphoreapp.com/api/v1/projects/f451e93c-2dfe-4f5e-bc2f-1b481f9cab9c/196908/badge.png)](https://semaphoreapp.com)
 
+### Development
+
+Export following environment variables:
+
+```bash
+export EMAIL_HOST=smtp.mandrillapp.com
+export EMAIL_USER=user@example.com
+export EMAIL_PASS=myapikey
+```
+
 ### Deploy to OpenShift
 
 Create an account at Red Hat's [OpenShift](https://openshift.redhat.com). Install the CLI client.

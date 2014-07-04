@@ -2,12 +2,12 @@
   (:use kerodon.core
         kerodon.test
         clojure.test
-        servisne-info.features.common)
+        servisne-info.test-utils)
   (:require [monger.collection :as mc]
             [servisne-info.handler :refer [app init]]))
 
-(use-fixtures :once fixtures-once)
-(use-fixtures :each fixtures-each)
+(use-fixtures :once init-database)
+(use-fixtures :each clean-database)
 
 (defn assert-user-exists [_ user]
   (let [email (:email user)

@@ -2,6 +2,7 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [com.draines/postal "1.11.1"]
                  [com.novemberain/monger "1.7.0"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/timbre "2.7.1"]
@@ -9,6 +10,7 @@
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
+                 [fuzzy-string "0.1.2-SNAPSHOT"]
                  [http-kit "2.1.16"]
                  [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
@@ -33,5 +35,6 @@
                         [ring/ring-devel "1.2.1"]]
          :env {:selmer-dev true}}}
   :min-lein-version "2.0.0"
-  :aliases {"hello" ["run" "-m" "servisne-info.tasks.hello-world"]
-            "scrape" ["run" "-m" "servisne-info.tasks.scrape"]})
+  :aliases {"hello"              ["run" "-m" "servisne-info.tasks.hello-world"]
+            "scrape"             ["run" "-m" "servisne-info.tasks.scrape"]
+            "send-notifications" ["run" "-m" "servisne-info.tasks.send-notifications"]})
