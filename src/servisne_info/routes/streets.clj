@@ -1,5 +1,6 @@
 (ns servisne-info.routes.streets
-  (:use compojure.core)
+  (:use compojure.core
+        [clojure.string :only [trim split]])
   (:require [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
@@ -8,7 +9,7 @@
     (layout/render "streets/edit.html" user)))
 
 (defn streets-update [email streets]
-  (repo/update-user email {:streets streets})
+  (repo/update-user email {:streets (map trim (split streets #","))})
   (layout/render "streets/update.html"
                  {:email email :streets streets}))
 
