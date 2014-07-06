@@ -39,7 +39,7 @@
         (assert-user-exists user))))
 
 (deftest update-streets
-  (let [user {:email "john@example.com" :streets "Mileticeva, Bulevar Oslobodjenja"}]
+  (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
     (create-user user)
     (-> (session app)
         (visit "/")
@@ -48,4 +48,4 @@
         (press "Sledeći korak →")
         (follow-redirect)
         (within [:#streets]
-          (has (text? (:streets user)))))))
+          (has (text? (join ", " (:streets user))))))))

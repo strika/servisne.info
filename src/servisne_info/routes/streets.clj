@@ -1,11 +1,13 @@
 (ns servisne-info.routes.streets
   (:use compojure.core
-        [clojure.string :only [trim split]])
+        [clojure.string :only [join trim split]])
   (:require [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
 (defn streets-edit [email]
-  (let [user (repo/find-user email)]
+  (let [user (update-in (repo/find-user email)
+                        [:streets]
+                        #(join ", " %))]
     (layout/render "streets/edit.html" user)))
 
 (defn streets-update [email streets]
