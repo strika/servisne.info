@@ -33,4 +33,26 @@
       <p>Za zupčanike zadužen je <a href="http://github.com/strika" target="_blank" class="a-green">Nebojša</a>.</p>
     </div>
   </div>	
+
+  <script>
+    $(function() {
+      var sometimes = function(f) {
+        if (Math.random() > 0.5) {
+          f();
+        }
+      }
+      
+      var toggleAvatarHighlight = function() {
+        sometimes(function() {
+          $(".avatar.tanja").toggleClass("hover");
+        });
+        
+        sometimes(function() {
+          $(".avatar.nebojsa").toggleClass("hover");
+        });
+      }
+      
+      setInterval(toggleAvatarHighlight, 500);
+    });
+  </script>
 {% endblock %}

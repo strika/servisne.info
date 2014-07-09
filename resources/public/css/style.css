@@ -86,6 +86,10 @@ a.a-green {
   background-position: 0 -420px;
 }
 
+.tanja.hover {
+  background-position: 0 -420px;
+}
+
 .avatar-tanja {
   padding-bottom: 1em;
   text-align: right;
@@ -97,6 +101,10 @@ a.a-green {
 }
 
 .nebojsa:hover {
+  background-position: 0 0;
+}
+
+.nebojsa.hover {
   background-position: 0 0;
 }
 
