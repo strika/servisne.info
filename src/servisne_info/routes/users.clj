@@ -23,7 +23,8 @@
                  {:email email :streets streets}))
 
 (defn users-create [email]
-  (create-user email)
+  (if-not (repo/find-user email)
+    (create-user email))
   (response/redirect (str "/users/edit?email=" email)))
 
 (defroutes users-routes
