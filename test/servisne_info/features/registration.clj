@@ -1,11 +1,12 @@
 (ns servisne-info.features.registration
-  (:use kerodon.core
+  (:use clojure.test
+        [clojure.string :only [join split]]
+        kerodon.core
         kerodon.test
-        clojure.test
-        servisne-info.test-utils
-        [clojure.string :only [join split]])
+        servisne-info.test-utils)
   (:require [monger.collection :as mc]
-            [servisne-info.handler :refer [app init]]))
+            [servisne-info.handler :refer [app init]]
+            [servisne-info.repository :as repo]))
 
 (use-fixtures :once init-database)
 (use-fixtures :each clean-database)
@@ -17,8 +18,8 @@
     (is (not (nil? db-user)))
     (is (= (:streets db-user) streets))))
 
-(defn create-user [user]
-  (mc/insert "users" user))
+(defn assert-users-count [_ users-count]
+  (is (= users-count (count (repo/find-all-users)))))
 
 (deftest registration
   (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
@@ -40,7 +41,7 @@
 
 (deftest update-streets
   (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
-    (create-user user)
+    (repo/create-user user)
     (-> (session app)
         (visit "/")
         (follow "Prijavi me")
@@ -48,4 +49,8 @@
         (press "Sledeći korak →")
         (follow-redirect)
         (within [:#streets]
-          (has (text? (join ", " (:streets user))))))))
+          (has (text? (join ", " (:streets user)))))
+        (press "Sačuvaj")
+        (within [:h2]
+          (has (text? "Podešavanje završeno!")))
+        (assert-users-count 1))))
