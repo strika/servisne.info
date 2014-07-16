@@ -9,7 +9,6 @@
             [servisne-info.repository :refer [db-connect db-disconnect]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
-            [servisne-info.routes.streets :refer [streets-routes]]
             [taoensso.timbre :as timbre]))
 
 (defroutes app-routes
@@ -68,7 +67,7 @@
 
 (def app (middleware/app-handler
            ;; add your application routes here
-           [home-routes users-routes streets-routes app-routes]
+           [home-routes users-routes app-routes]
            ;; add custom middleware here
            :middleware [template-error-page capture-exceptions]
            ;; add access rules here
