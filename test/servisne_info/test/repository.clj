@@ -12,20 +12,20 @@
 
 (deftest test-create-user
   (create-user user)
-  (let [saved-user (mc/find-one-as-map "users" {:email (:email user)})]
+  (let [saved-user (mc/find-one-as-map @db "users" {:email (:email user)})]
     (is (= (:email saved-user) (:email user)))
     (is (= (:streets saved-user) (:streets user)))))
 
 (deftest test-find-user
-  (mc/insert "users" user)
+  (mc/insert @db "users" user)
   (let [saved-user (find-user (:email user))]
     (is (= (:email saved-user) (:email user)))
     (is (= (:streets saved-user) (:streets user)))))
 
 (deftest test-find-all-users
   (let [user-2 {:email "mike@example.com" :streets ["Cara Lazara"]}]
-    (mc/insert "users" user)
-    (mc/insert "users" user-2)
+    (mc/insert @db "users" user)
+    (mc/insert @db "users" user-2)
     (let [users (find-all-users)
           first-user (first users)
           second-user (second users)]
@@ -35,9 +35,9 @@
 
 (deftest test-update-user
   (let [new-attributes {:streets ["Cara Lazara"]}]
-    (mc/insert "users" user)
+    (mc/insert @db "users" user)
     (update-user (:email user) new-attributes)
-    (let [saved-user (mc/find-one-as-map "users" {:email (:email user)})]
+    (let [saved-user (mc/find-one-as-map @db "users" {:email (:email user)})]
       (is (= (:streets saved-user) (:streets new-attributes))))))
 
 ; News
@@ -46,32 +46,32 @@
 
 (deftest test-create-news
   (create-news power-outage)
-  (let [saved-news (mc/find-one-as-map "news" {:url (:url power-outage)})]
+  (let [saved-news (mc/find-one-as-map @db "news" {:url (:url power-outage)})]
     (is (= (:title saved-news) (:title power-outage)))
     (is (= (:url saved-news) (:url saved-news)))))
 
 (deftest test-find-news
-  (mc/insert "news" power-outage)
+  (mc/insert @db "news" power-outage)
   (let [saved-news (find-news (:url power-outage))]
     (is (= (:title saved-news) (:title power-outage)))
     (is (= (:url saved-news) (:url power-outage)))))
 
 (deftest test-update-news
   (let [new-attributes {:sent true}]
-    (mc/insert "news" power-outage)
+    (mc/insert @db "news" power-outage)
     (update-news (:url power-outage) new-attributes)
-    (let [saved-news (mc/find-one-as-map "news" {:url (:url power-outage)})]
+    (let [saved-news (mc/find-one-as-map @db "news" {:url (:url power-outage)})]
       (is (= (:sent saved-news) (:sent new-attributes))))))
 
 (deftest test-find-latest-news
   (let [closed-street {:title "Closed street" :url "http://example.com/closed_street"}]
-    (mc/insert "news" power-outage)
-    (mc/insert "news" closed-street)
+    (mc/insert @db "news" power-outage)
+    (mc/insert @db "news" closed-street)
     (is (= (count (find-latest-news)) 2))))
 
 (deftest test-find-unsent-news
-  (mc/insert "news" power-outage)
-  (mc/insert "news" old-news)
+  (mc/insert @db "news" power-outage)
+  (mc/insert @db "news" old-news)
   (let [unsent-news (find-unsent-news)]
     (is (= 1 (count unsent-news)))
     (is (= (:url power-outage) (:url (first unsent-news))))))

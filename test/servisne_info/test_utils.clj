@@ -1,5 +1,5 @@
 (ns servisne-info.test-utils
-  (:require [monger.collection :as mc]
+  (:require [servisne-info.repository :as repo]
             [servisne-info.handler :refer [init]]
             [servisne-info.notifications :as notifications]))
 
@@ -20,8 +20,7 @@
   (t))
 
 (defn clean-database [t]
-  (mc/remove "users")
-  (mc/remove "news")
+  (repo/remove-all)
   (t))
 
 (defn clean-emails [t]
