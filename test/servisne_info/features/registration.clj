@@ -4,8 +4,7 @@
         kerodon.core
         kerodon.test
         servisne-info.test-utils)
-  (:require [monger.collection :as mc]
-            [servisne-info.handler :refer [app init]]
+  (:require [servisne-info.handler :refer [app init]]
             [servisne-info.repository :as repo]))
 
 (use-fixtures :once init-database)
@@ -14,7 +13,7 @@
 (defn assert-user-exists [_ user]
   (let [email (:email user)
         streets (:streets user)
-        db-user (mc/find-one-as-map "users" {:email email})]
+        db-user (repo/find-user email)]
     (is (not (nil? db-user)))
     (is (= (:streets db-user) streets))))
 
