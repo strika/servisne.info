@@ -5,6 +5,7 @@
             [monger.conversion :refer [from-db-object]]
             [monger.operators :refer :all]
             [monger.query :as mq]
+            [monger.search :as ms]
             [taoensso.timbre :as timbre]))
 
 (def connection (atom nil))
@@ -21,6 +22,7 @@
     (reset! connection (mg/connect {:host host :port port}))
     (reset! db (mg/get-db @connection db-name))
     (mg/authenticate @db username (.toCharArray password))
+    (mc/ensure-index @db "news" (array-map :content "text"))
     (timbre/info "Connected")))
 
 (defn db-disconnect []
@@ -63,6 +65,11 @@
     (mq/fields news-attributes)
     (mq/sort (array-map :created-at -1))
     (mq/limit 10)))
+
+(defn search-news [search]
+  (map :obj
+    (ms/results-from
+      (ms/search @db "news" search))))
 
 (defn find-unsent-news []
   (mq/with-collection @db "news"

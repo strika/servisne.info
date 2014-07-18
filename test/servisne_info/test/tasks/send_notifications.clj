@@ -14,13 +14,15 @@
 (def power-outage {:title "Power outage" :url "http://example.com/power_outage" :content "Power outage in Dunavska"})
 (def closed-road {:title "Closed road" :url "http://example.com/closed_road" :content "Closed road somewhere"})
 
-(deftest mentiones-user-streets-test
-  (is (mentiones-user-streets? user power-outage)))
-
 (deftest find-news-for-user-test
-  (let [news (find-news-for-user user [power-outage closed-road])]
-    (is (= (first news) user))
-    (is (= (second news) [power-outage]))))
+  (repo/create-user user)
+  (repo/create-news power-outage)
+  (repo/create-news closed-road)
+  (let [result (find-news-for-user user)
+        result-user (first result)
+        result-news (second result)]
+    (is (= result-user user))
+    (is (= (:url (first result-news)) (:url power-outage)))))
 
 (deftest send-notifications-test
   (repo/create-user user)
