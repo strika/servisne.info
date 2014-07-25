@@ -1,5 +1,6 @@
 (ns servisne-info.tasks.scrape
-  (:use servisne-info.utils
+  (:use servisne-info.tasks
+        servisne-info.utils
         [servisne-info.scrape.common :only [html-resource]])
   (:require [servisne-info.repository :as repo]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
@@ -31,7 +32,5 @@
        (map timestamp-link)
        (save-news)))
 
-(defn -main [& args]
-  (repo/db-connect)
-  (println "Scraping new links, count='" (save-links) "'")
-  (repo/db-disconnect))
+(deftask "scrape"
+  (println "Scraping new links, count='" (save-links) "'"))

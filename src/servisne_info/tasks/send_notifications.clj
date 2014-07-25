@@ -1,5 +1,6 @@
 (ns servisne-info.tasks.send-notifications
-  (:use [servisne-info.notifications :only [send-news-email]]
+  (:use servisne-info.tasks
+        [servisne-info.notifications :only [send-news-email]]
         [clojure.string :only [join]])
   (:require [servisne-info.repository :as repo]))
 
@@ -32,9 +33,5 @@
   (send-users-notifications (repo/find-all-users))
   (mark-news-as-sent (repo/find-unsent-news)))
 
-(defn -main [& args]
-  (repo/db-connect)
-  (println "Sending notifications")
-  (send-notifications)
-  (println "Done")
-  (repo/db-disconnect))
+(deftask "send notifications"
+  (send-notifications))
