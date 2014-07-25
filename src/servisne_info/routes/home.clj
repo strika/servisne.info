@@ -1,7 +1,6 @@
 (ns servisne-info.routes.home
   (:use compojure.core)
-  (:require [servisne-info.scrape.ns-rs :as scrape]
-            [servisne-info.repository :as repo]
+  (:require [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
 (defn home-page []
