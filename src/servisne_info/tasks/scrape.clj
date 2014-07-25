@@ -1,10 +1,8 @@
 (ns servisne-info.tasks.scrape
-  (:use [raven-clj.core :only [capture]]
-        [raven-clj.interfaces :only [stacktrace]]
+  (:use servisne-info.tasks
         servisne-info.utils
         [servisne-info.scrape.common :only [html-resource]])
-  (:require [environ.core :refer [env]]
-            [servisne-info.repository :as repo]
+  (:require [servisne-info.repository :as repo]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
 
 ; Private
@@ -34,13 +32,5 @@
        (map timestamp-link)
        (save-news)))
 
-(defn -main [& args]
-  (try
-    (do
-      (repo/db-connect)
-      (println "Scraping new links, count='" (save-links) "'")
-      (repo/db-disconnect))
-    (catch Exception e
-      (capture (env :sentry-dsn)
-               (-> {:message (.getMessage e)}
-                   (stacktrace e))))))
+(deftask "scrape"
+  (println "Scraping new links, count='" (save-links) "'"))
