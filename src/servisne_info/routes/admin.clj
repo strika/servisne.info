@@ -11,7 +11,8 @@
 
 (defn dashboard []
   (layout/render
-    "dashboard.html"))
+    "dashboard.html"
+    {:users (repo/find-all-users)))
 
 (defroutes admin-routes
   (GET "/admin" [] (restricted (dashboard))))
