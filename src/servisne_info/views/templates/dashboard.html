@@ -1,28 +1,48 @@
 {% extends "servisne_info/views/templates/base.html" %}
 {% block content %}
 
-<div class="row">
-  <div class="col-md-12">
-    <h2>Users</h2>
+<h2>Users</h2>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <td>Email</td>
-          <td>Streets</td>
-        </tr>
-      </thead>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Streets</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
 
-      <tbody>
-        {% for user in users %}
-          <tr>
-            <td>{{user.email}}</td>
-            <td>{{user.streets}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{user.email}}</td>
+      <td>{{user.streets}}</td>
+      <td>{{user.created-at|date:"yyyy-MM-dd"}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>News</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>URL</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for info in news %}
+    <tr>
+      <td>{{info.title}}</td>
+      <td>{{info.url}}</td>
+      <td>{{info.created-at|date:"yyyy-MM-dd"}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
