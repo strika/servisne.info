@@ -13,7 +13,7 @@
   (layout/render
     "dashboard.html"
     {:users (repo/find-all-users)
-     :news (repo/find-all-news)}))
+     :news (repo/find-latest-news)}))
 
 (defroutes admin-routes
   (GET "/admin" [] (restricted (dashboard))))
