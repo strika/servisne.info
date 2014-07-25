@@ -26,7 +26,7 @@
     (timbre/info "Connected")))
 
 (defn db-disconnect []
-  (mg/disconnect))
+  (mg/disconnect @connection))
 
 ; User
 (defn create-user [attributes]
