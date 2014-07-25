@@ -7,7 +7,7 @@
             [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
             [servisne-info.repository :refer [db-connect db-disconnect]]
-            [servisne-info.routes.admin :refer [admin-routes]]
+            [servisne-info.routes.admin :refer [admin-routes admin-access]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
             [taoensso.timbre :as timbre]))
@@ -72,7 +72,7 @@
            ;; add custom middleware here
            :middleware [template-error-page capture-exceptions]
            ;; add access rules here
-           :access-rules []
+           :access-rules [admin-access]
            ;; serialize/deserialize the following data formats
            ;; available formats:
            ;; :json :json-kw :yaml :yaml-kw :edn :yaml-in-html
