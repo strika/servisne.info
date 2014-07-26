@@ -7,11 +7,11 @@
   `(defn ~'-main [& args#]
      (try
        (do
-         (println ~task-name " starting...")
+         (println ~task-name "starting...")
          (servisne-info.repository/db-connect)
          ~@body
          (servisne-info.repository/db-disconnect)
-         (println ~task-name " done."))
+         (println ~task-name "done."))
        (catch Exception e#
          (capture (env :sentry-dsn)
                   (-> {:message (.getMessage e#)}
