@@ -33,4 +33,4 @@
        (save-news)))
 
 (deftask "scrape"
-  (println "Scraping new links, count='" (save-links) "'"))
+  (println (str "Scraping new links, count='" (save-links) "'")))
