@@ -1,5 +1,6 @@
 (ns servisne-info.handler  
-  (:use [raven-clj.ring :only [wrap-sentry]])
+  (:use [raven-clj.ring :only [wrap-sentry]]
+        [servisne-info.handler-utils :only [log-request]])
   (:require [com.postspectacular.rotor :as rotor]
             [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
@@ -70,7 +71,7 @@
            ;; add your application routes here
            [admin-routes home-routes users-routes app-routes]
            ;; add custom middleware here
-           :middleware [template-error-page capture-exceptions]
+           :middleware [template-error-page capture-exceptions log-request]
            ;; add access rules here
            :access-rules [admin-access]
            ;; serialize/deserialize the following data formats
