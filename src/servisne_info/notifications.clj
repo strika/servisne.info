@@ -17,6 +17,7 @@
                  :body body}))
 
 (defn send-news-email [user news]
+  (println (str "Sending news email, user=" (:email user)))
   (send-email (:email user)
               "Servisne informacije"
               (email/render "new_links.txt"
