@@ -10,7 +10,7 @@
   (let [streets (join " " (:streets user))
         news (repo/search-news streets)
         unsent-news (filter #(nil? (:sent %)) news)]
-    (println (str "Finding news for user, user=" (:email user) "news_count=" (count unsent-news)))
+    (println (str "Finding news for user, user=" (:email user) " news_count=" (count unsent-news)))
     [user unsent-news]))
 
 (defn find-news-for-users [users]
