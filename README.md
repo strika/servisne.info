@@ -5,10 +5,10 @@ servisne.info is a web app for delivering service informations on your email.
 
 Visit http://servisne.info to try it out.
 
+servisne.info is proudly tested on [Semaphore](https://semaphoreapp.com/strika/servisne-info).
+
 [![Build
 Status](https://semaphoreapp.com/api/v1/projects/f451e93c-2dfe-4f5e-bc2f-1b481f9cab9c/196908/badge.png)](https://semaphoreapp.com)
-
-servisne.info is proudly tested on [Semaphore](https://semaphoreapp.com/strika/servisne-info).
 
 ### Development
 
