@@ -36,5 +36,6 @@
   (send-users-notifications (repo/find-all-users))
   (mark-news-as-sent (repo/find-unsent-news)))
 
-(deftask "send notifications"
-  (send-notifications))
+(add-periodic-task
+  (deftask "send notifications"
+    (send-notifications)))

@@ -11,6 +11,7 @@
             [servisne-info.routes.admin :refer [admin-routes admin-access]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
+            [servisne-info.tasks.schedule-tasks :refer [schedule-tasks]]
             [taoensso.timbre :as timbre]))
 
 (defroutes app-routes
@@ -37,6 +38,7 @@
     {:path "servisne_info.log" :max-size (* 512 1024) :backlog 10})
 
   (db-connect)
+  (schedule-tasks)
 
   (if (env :selmer-dev) (parser/cache-off!))
   (timbre/info "servisne-info started successfully"))

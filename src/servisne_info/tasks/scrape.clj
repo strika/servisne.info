@@ -32,5 +32,7 @@
        (map timestamp-link)
        (save-news)))
 
-(deftask "scrape"
-  (println (str "Scraping new links, count='" (save-links) "'")))
+(add-periodic-task
+  (deftask "scrape"
+    (println (str "Scraping new links, count='" (save-links) "'"))))
+
