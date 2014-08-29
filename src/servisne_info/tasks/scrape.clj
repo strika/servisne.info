@@ -1,5 +1,6 @@
 (ns servisne-info.tasks.scrape
   (:use servisne-info.tasks
+        servisne-info.tasks.task-definition
         servisne-info.utils
         [servisne-info.scrape.common :only [html-resource]])
   (:require [taoensso.timbre :as timbre]

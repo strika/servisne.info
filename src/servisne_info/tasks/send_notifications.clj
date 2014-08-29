@@ -1,5 +1,6 @@
 (ns servisne-info.tasks.send-notifications
   (:use servisne-info.tasks
+        servisne-info.tasks.task-definition
         [servisne-info.notifications :only [send-news-email]]
         [clojure.string :only [join]])
   (:require [servisne-info.repository :as repo]))
