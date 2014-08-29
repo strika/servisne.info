@@ -1,8 +1,9 @@
 (ns servisne-info.tasks.scrape
-  (:use servisne-info.tasks
-        servisne-info.utils
+  (:use servisne-info.utils
+        [servisne-info.tasks.task-definition :only [deftask]]
         [servisne-info.scrape.common :only [html-resource]])
-  (:require [servisne-info.repository :as repo]
+  (:require [taoensso.timbre :as timbre]
+            [servisne-info.repository :as repo]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
 
 ; Private
@@ -32,5 +33,8 @@
        (map timestamp-link)
        (save-news)))
 
-(deftask "scrape"
-  (println (str "Scraping new links, count='" (save-links) "'")))
+(def scrape-task
+  (deftask "scrape"
+    (let [saved-links-count (save-links)]
+      (timbre/info "Scraping new links, count='" saved-links-count "'"))))
+

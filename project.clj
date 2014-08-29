@@ -14,6 +14,7 @@
                  [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
                  [org.clojure/tools.nrepl "0.2.3"]
+                 [overtone/at-at "1.2.0"]
                  [ring-server "0.3.1"]
                  [selmer "0.5.8"]
                  [raven-clj "1.0.0"]]

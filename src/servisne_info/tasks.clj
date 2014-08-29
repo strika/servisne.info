@@ -1,18 +1,18 @@
 (ns servisne-info.tasks
-  (:use [raven-clj.core :only [capture]]
-        [raven-clj.interfaces :only [stacktrace]])
-  (:require [environ.core :refer [env]]))
+  (:use [servisne-info.tasks.scrape :only [scrape-task]]
+        [servisne-info.tasks.send-notifications :only [send-notifications-task]])
+  (:require [overtone.at-at :as at-at]))
 
-(defmacro deftask [task-name & body]
-  `(defn ~'-main [& args#]
-     (try
-       (do
-         (println ~task-name "starting...")
-         (servisne-info.repository/db-connect)
-         ~@body
-         (servisne-info.repository/db-disconnect)
-         (println ~task-name "done."))
-       (catch Exception e#
-         (capture (env :sentry-dsn)
-                  (-> {:message (.getMessage e#)}
-                      (stacktrace e#)))))))
+(def tasks-pool (at-at/mk-pool :cpu-count 1))
+(def default-period (* 60 60 1000)) ; one hour
+(def periodic-tasks (atom []))
+
+(defn add-periodic-task [task]
+  (swap! periodic-tasks conj task))
+
+(defn schedule-periodic-tasks []
+  (doseq [task @periodic-tasks]
+    (at-at/every default-period task tasks-pool :initial-delay (/ default-period 10))))
+
+(add-periodic-task scrape-task)
+(add-periodic-task send-notifications-task)
