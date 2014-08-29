@@ -2,15 +2,16 @@
   (:use [raven-clj.core :only [capture]]
         [raven-clj.interfaces :only [stacktrace]])
   (:require [environ.core :refer [env]]
-            [overtone.at-at :as at-at]))
+            [overtone.at-at :as at-at]
+            [taoensso.timbre :as timbre]))
 
 (defmacro deftask [task-name & body]
   `(fn []
      (try
        (do
-         (println ~task-name "starting...")
+         (timbre/info ~task-name " starting...")
          ~@body
-         (println ~task-name "done."))
+         (timbre/info ~task-name " done."))
        (catch Exception e#
          (capture (env :sentry-dsn)
                   (-> {:message (.getMessage e#)}

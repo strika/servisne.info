@@ -2,7 +2,8 @@
   (:use servisne-info.tasks
         servisne-info.utils
         [servisne-info.scrape.common :only [html-resource]])
-  (:require [servisne-info.repository :as repo]
+  (:require [taoensso.timbre :as timbre]
+            [servisne-info.repository :as repo]
             [servisne-info.scrape.ns-rs :as ns-scraper]))
 
 ; Private
@@ -34,5 +35,6 @@
 
 (add-periodic-task
   (deftask "scrape"
-    (println (str "Scraping new links, count='" (save-links) "'"))))
+    (let [saved-links-count (save-links)]
+      (timbre/info "Scraping new links, count='" saved-links-count "'"))))
 
