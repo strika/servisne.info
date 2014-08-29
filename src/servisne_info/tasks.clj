@@ -18,7 +18,7 @@
                       (stacktrace e#)))))))
 
 (def tasks-pool (at-at/mk-pool :cpu-count 1))
-(def default-period 3600)
+(def default-period (* 60 60 1000)) ; one hour
 (def periodic-tasks (atom []))
 
 (defn add-periodic-task [task]
