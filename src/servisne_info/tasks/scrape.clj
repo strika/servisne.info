@@ -1,7 +1,6 @@
 (ns servisne-info.tasks.scrape
-  (:use servisne-info.tasks
-        servisne-info.tasks.task-definition
-        servisne-info.utils
+  (:use servisne-info.utils
+        [servisne-info.tasks.task-definition :only [deftask]]
         [servisne-info.scrape.common :only [html-resource]])
   (:require [taoensso.timbre :as timbre]
             [servisne-info.repository :as repo]
@@ -34,7 +33,7 @@
        (map timestamp-link)
        (save-news)))
 
-(add-periodic-task
+(def scrape-task
   (deftask "scrape"
     (let [saved-links-count (save-links)]
       (timbre/info "Scraping new links, count='" saved-links-count "'"))))

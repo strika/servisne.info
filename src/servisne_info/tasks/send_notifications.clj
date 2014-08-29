@@ -1,8 +1,7 @@
 (ns servisne-info.tasks.send-notifications
-  (:use servisne-info.tasks
-        servisne-info.tasks.task-definition
+  (:use [clojure.string :only [join]]
         [servisne-info.notifications :only [send-news-email]]
-        [clojure.string :only [join]])
+        [servisne-info.tasks.task-definition :only [deftask]])
   (:require [servisne-info.repository :as repo]))
 
 ; Private
@@ -37,6 +36,6 @@
   (send-users-notifications (repo/find-all-users))
   (mark-news-as-sent (repo/find-unsent-news)))
 
-(add-periodic-task
+(def send-notifications-task
   (deftask "send notifications"
     (send-notifications)))

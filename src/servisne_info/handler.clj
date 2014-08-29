@@ -1,6 +1,7 @@
 (ns servisne-info.handler  
   (:use [raven-clj.ring :only [wrap-sentry]]
-        [servisne-info.handler-utils :only [log-request]])
+        [servisne-info.handler-utils :only [log-request]]
+        [servisne-info.tasks :refer [schedule-periodic-tasks]])
   (:require [com.postspectacular.rotor :as rotor]
             [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
@@ -11,7 +12,6 @@
             [servisne-info.routes.admin :refer [admin-routes admin-access]]
             [servisne-info.routes.home :refer [home-routes]]
             [servisne-info.routes.users :refer [users-routes]]
-            [servisne-info.tasks.schedule-tasks :refer [schedule-tasks]]
             [taoensso.timbre :as timbre]))
 
 (defroutes app-routes
@@ -38,7 +38,7 @@
     {:path "servisne_info.log" :max-size (* 512 1024) :backlog 10})
 
   (db-connect)
-  (schedule-tasks)
+  (schedule-periodic-tasks)
 
   (if (env :selmer-dev) (parser/cache-off!))
   (timbre/info "servisne-info started successfully"))
