@@ -2,15 +2,15 @@
   (:use [environ.core :only [env]]
         [raven-clj.core :only [capture]]
         [raven-clj.interfaces :only [stacktrace]])
-  (:require [taoensso.timbre :as timbre]))
+  (:require [servisne-info.logging :as l]))
 
 (defmacro deftask [task-name & body]
   `(fn []
      (try
        (do
-         (timbre/info ~task-name " starting...")
+         (l/info "Task start" {:task ~task-name})
          ~@body
-         (timbre/info ~task-name " done."))
+         (l/info "Task done" {:task ~task-name}))
        (catch Exception e#
          (capture (env :sentry-dsn)
                   (-> {:message (.getMessage e#)}

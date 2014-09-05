@@ -1,6 +1,7 @@
 (ns servisne-info.notifications
   (:use postal.core)
   (:require [environ.core :refer [env]]
+            [servisne-info.logging :as l]
             [servisne-info.views.email :as email]))
 
 (def default-from "nebojsa.stricevic+servisne@gmail.com")
@@ -17,7 +18,7 @@
                  :body body}))
 
 (defn send-news-email [user news]
-  (println (str "Sending news email, user=" (:email user)))
+  (l/info "Sending news email" {:user (:email user)})
   (send-email (:email user)
               "Servisne informacije"
               (email/render "new_links.txt"

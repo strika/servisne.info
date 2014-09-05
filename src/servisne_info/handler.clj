@@ -2,17 +2,16 @@
   (:use [raven-clj.ring :only [wrap-sentry]]
         [servisne-info.handler-utils :only [log-request]]
         [servisne-info.tasks :refer [schedule-periodic-tasks]])
-  (:require [com.postspectacular.rotor :as rotor]
-            [compojure.core :refer [defroutes]]            
+  (:require [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
             [environ.core :refer [env]]
             [noir.util.middleware :as middleware]
             [selmer.parser :as parser]
+            [servisne-info.logging :as l]
             [servisne-info.repository :refer [db-connect db-disconnect]]
             [servisne-info.routes.admin :refer [admin-routes admin-access]]
             [servisne-info.routes.home :refer [home-routes]]
-            [servisne-info.routes.users :refer [users-routes]]
-            [taoensso.timbre :as timbre]))
+            [servisne-info.routes.users :refer [users-routes]]))
 
 (defroutes app-routes
   (route/resources "/")
@@ -25,30 +24,18 @@
    put any initialization code here"
   []
 
-  (timbre/set-config!
-    [:appenders :rotor]
-    {:min-level :info
-     :enabled? true
-     :async? false ; should be always false for rotor
-     :max-message-per-msecs nil
-     :fn rotor/append})
-
-  (timbre/set-config!
-    [:shared-appender-config :rotor]
-    {:path "servisne_info.log" :max-size (* 512 1024) :backlog 10})
-
+  (l/setup)
   (db-connect)
   (schedule-periodic-tasks)
-
   (if (env :selmer-dev) (parser/cache-off!))
-  (timbre/info "servisne-info started successfully"))
+  (l/info "servisne-info started successfully"))
 
 (defn destroy
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
   (db-disconnect)
-  (timbre/info "servisne-info is shutting down..."))
+  (l/info "servisne-info is shutting down..."))
 
 (defn capture-exceptions [handler]
   (let [sentry-dsn (env :sentry-dsn)]

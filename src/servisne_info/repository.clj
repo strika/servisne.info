@@ -6,7 +6,7 @@
             [monger.operators :refer :all]
             [monger.query :as mq]
             [monger.search :as ms]
-            [taoensso.timbre :as timbre]))
+            [servisne-info.logging :as l]))
 
 (def connection (atom nil))
 (def db (atom nil))
@@ -18,12 +18,12 @@
         username (or (env :openshift-mongodb-db-username) "")
         password (or (env :openshift-mongodb-db-password) "")
         db-name  (or (env :openshift-app-name) (and (= (env :clj-env) "test") "servisne-test") "servisne")]
-    (timbre/info (str "Connecting to MongoDB: " host ":" port "/" db-name))
+    (l/info "Connecting to MongoDB" {:host host :port port :db_name db-name})
     (reset! connection (mg/connect {:host host :port port}))
     (reset! db (mg/get-db @connection db-name))
     (mg/authenticate @db username (.toCharArray password))
     (mc/ensure-index @db "news" (array-map :content "text"))
-    (timbre/info "Connected")))
+    (l/info "Connected")))
 
 (defn db-disconnect []
   (mg/disconnect @connection))
