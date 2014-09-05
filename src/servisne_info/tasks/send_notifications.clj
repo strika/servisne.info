@@ -2,7 +2,8 @@
   (:use [clojure.string :only [join]]
         [servisne-info.notifications :only [send-news-email]]
         [servisne-info.tasks.task-definition :only [deftask]])
-  (:require [servisne-info.repository :as repo]))
+  (:require [servisne-info.logging :as l]
+            [servisne-info.repository :as repo]))
 
 ; Private
 
@@ -10,7 +11,7 @@
   (let [streets (join " " (:streets user))
         news (repo/search-news streets)
         unsent-news (filter #(nil? (:sent %)) news)]
-    (println (str "Finding news for user, user=" (:email user) " news_count=" (count unsent-news)))
+    (l/info "Finding news for user" {:user (:email user) :news_count (count unsent-news)})
     [user unsent-news]))
 
 (defn find-news-for-users [users]
@@ -19,7 +20,7 @@
 (defn send-notification [user news]
   (if-not (empty? news)
     (do
-      (println (str "Sending news for user, user=" (:email user)))
+      (l/info "Sending news for user" {:user (:email user)})
       (send-news-email user news))))
 
 (defn send-users-notifications [users]

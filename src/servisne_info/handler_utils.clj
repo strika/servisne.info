@@ -1,5 +1,5 @@
 (ns servisne-info.handler-utils
-  (:require [taoensso.timbre :as timbre]))
+  (:require [servisne-info.logging :as l]))
 
 (def assets ["/js/" "/css/" "/fonts/" "/images"])
 
@@ -9,5 +9,5 @@
 (defn log-request [handler]
   (fn [request]
     (if-not (asset? request)
-      (timbre/info "Request start:" (:request-method request) (:uri request) (:query-string request)))
+      (l/info "Request start" {:method (:request-method request) :uri (:uri request) :query (:query-string request)}))
     (handler request)))
