@@ -17,9 +17,9 @@
 ; Public
 
 (defn info-page-content [html]
-  (apply str
-         (map s/trim
-              (en/select html [:div#content en/text-node]))))
+  (s/join ""
+          (map s/trim
+               (en/select html [:div#content en/text-node]))))
 
 (defn info-page [html]
   {:title (info-page-title html)
