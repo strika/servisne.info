@@ -1,13 +1,15 @@
 {% extends "servisne_info/views/templates/base.html" %}
 {% block content %}
 
-<div class="jumbotron">
-  <h2>Dobrodošli na servisne.info</h2>
-  <p>servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
-</div>
-
 <div class="row text-centered">
-  <div class="col-md-12">
+  <div class="col-md-6">
+    <div class="jumbotron">
+      <h2>Ne dozvolite da vas nestanak struje iznenadi</h2>
+      <p>servisne.info vam šalju korisne servisne informacije na mejl za ulice koje odaberete.
+      Budite spremni za nestanak struje, vode ili grejanja.</p>
+    </div>
+  </div>
+  <div class="col-md-6">
     <a href="{{servlet-context}}/users/new" class="btn btn-primary btn-huge active" role="button">Prijavi me</a>
   </div>
 </div>

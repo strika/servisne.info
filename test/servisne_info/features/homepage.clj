@@ -18,6 +18,6 @@
     (-> (session app)
         (visit "/")
         (within [:div.jumbotron :h2]
-          (has (text? "Dobrodošli na servisne.info")))
+          (has (text? "Ne dozvolite da vas nestanak struje iznenadi")))
         (within [:div.latest-info :li]
           (has (text? (:title power-outage)))))))
