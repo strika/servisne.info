@@ -33,43 +33,6 @@ a.a-green {
   padding: .5em;
 }
 
-.steps-explainer {
-  margin-top: 60px;
-}
-
-.step-wrapper {
-  display: inline-block;
-  padding: 20px;
-  border: 1px solid #b1b1b1;
-  border-radius: 10px;
-  background-color: #ececec;
-}
-
-.step-explainer {
-  background: url(/images/steps.png) no-repeat;
-  display: inline-block;
-}
-
-.step-1-explainer {
-  background-position: 0px -245px;
-  width: 350px;
-  height: 235px;
-}
-
-.step-1-explainer:hover {
-  background-position: 0px 0px;
-}
-
-.step-2-explainer {
-  background-position: 0px -832px;
-  width: 350px;
-  height: 332px;
-}
-
-.step-2-explainer:hover {
-  background-position: 0px -490px;
-}
-
 .avatar {
   background: url(/images/about.png) no-repeat;
   display: inline-block;
@@ -151,10 +114,6 @@ div.container .btn-primary:hover {
 
 .latest-info li a {
   color: #878787;
-}
-
-form {
-  text-align: center;
 }
 
 .steps {

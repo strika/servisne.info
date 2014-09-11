@@ -24,12 +24,9 @@
   (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
     (-> (session app)
         (visit "/")
-        (follow "Prijavi me")
         (fill-in :#email (:email user))
-        (press "Sledeći korak →")
-        (follow-redirect)
         (fill-in :#streets (join ", " (:streets user)))
-        (press "Sačuvaj")
+        (press "Prijavi me")
         (within [:h2]
           (has (text? "Podešavanje završeno!")))
         (within [:.email]
@@ -37,19 +34,3 @@
         (within [:.streets]
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user))))
-
-(deftest update-streets
-  (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
-    (repo/create-user user)
-    (-> (session app)
-        (visit "/")
-        (follow "Prijavi me")
-        (fill-in :#email (:email user))
-        (press "Sledeći korak →")
-        (follow-redirect)
-        (within [:#streets]
-          (has (text? (join ", " (:streets user)))))
-        (press "Sačuvaj")
-        (within [:h2]
-          (has (text? "Podešavanje završeno!")))
-        (assert-users-count 1))))
