@@ -1,12 +1,14 @@
 (ns servisne-info.handler  
-  (:use [raven-clj.ring :only [wrap-sentry]]
+  (:use 
         [servisne-info.handler-utils :only [log-request]]
         [servisne-info.tasks :refer [schedule-periodic-tasks]])
   (:require [compojure.core :refer [defroutes]]            
             [compojure.route :as route]
             [environ.core :refer [env]]
             [noir.util.middleware :as middleware]
+            [prone.middleware :as prone]
             [selmer.parser :as parser]
+            [raven-clj.ring :as sentry]
             [servisne-info.logging :as l]
             [servisne-info.repository :refer [db-connect db-disconnect]]
             [servisne-info.routes.admin :refer [admin-routes admin-access]]
@@ -40,8 +42,8 @@
 (defn capture-exceptions [handler]
   (let [sentry-dsn (env :sentry-dsn)]
     (if sentry-dsn
-      (wrap-sentry handler sentry-dsn)
-      handler)))
+      (sentry/wrap-sentry handler sentry-dsn)
+      (prone/wrap-exceptions handler))))
 
 (defn template-error-page [handler]
   (if (env :selmer-dev)
