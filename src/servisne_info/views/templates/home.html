@@ -1,39 +1,40 @@
 {% extends "servisne_info/views/templates/base.html" %}
 {% block content %}
 
-<div class="jumbotron">
-  <h2>Dobrodošli na servisne.info</h2>
-  <p>servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
-</div>
-
 <div class="row text-centered">
   <div class="col-md-12">
-    <a href="{{servlet-context}}/users/new" class="btn btn-primary btn-huge active" role="button">Prijavi me</a>
+    <div class="jumbotron">
+      <h2>Ne dozvolite da vas nestanak struje iznenadi</h2>
+      <p>servisne.info vam šalju korisne servisne informacije na mejl za ulice koje odaberete.
+      Budite spremni za nestanak struje, vode ili grejanja.</p>
+    </div>
   </div>
 </div>
 
-<div class="jumbotron steps-explainer">
-  <div class="row">
-    <div class="col-md-12">
-      <h3 class="text-centered">Prijavljivanje se vrši u 2 jednostavna koraka</h3>
-    </div>
-  </div>
+<div class="row">
+  <div class="col-md-6">
+    <form action="{{servlet-context}}/users/create" method="post" role="form">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control" id="email" name="email" placeholder="pera.detlic@crtani.com" type="email">
+      </div>
 
-  <div class="row">
-    <div class="col-md-6 text-centered">
-      <h4>Unos imejl adrese</h4>
-      <div class="step-wrapper">
-        <div class="step-explainer step-1-explainer">
-        </div>
+      <div class="form-group">
+        <label for="streets">Ulice:</label>
+        <textarea id="streets" name="streets" class="form-control" rows="3"
+          placeholder="Bulevar oslobođenja, Miletićeva, Svetozara Miletića"></textarea>
       </div>
-    </div>
-    <div class="col-md-6 text-centered">
-      <h4>Unos ulica</h4>
-      <div class="step-wrapper">
-        <div class="step-explainer step-2-explainer">
-        </div>
-      </div>
-    </div>
+
+      <input type="submit" class="btn btn-primary btn-lg active" value="Prijavi me">
+    </form>
+  </div>
+  <div class="col-md-6">
+    <p>Unesite ulice koje vas interesuju, odvojene zarezom.
+    Preporučujemo Vam da unesete naziv ulice u svim oblicima koji se koriste u redovnoj upotrebi.
+    Na primer "Svetozara Miletića" i "Miletićeva".
+    Nije neophodno koristiti latinične karaktere.</p>
+
+    <p>Unošenjem svoje imejl adrese slažete se sa <a href="#" class="a-green">uslovima korišćenja</a>.</p>
   </div>
 </div>
 

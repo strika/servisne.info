@@ -5,30 +5,20 @@
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
-(defn- create-user [email]
-  (repo/create-user {:email email :streets {}}))
-
 (defn users-new []
   (layout/render "users/new.html"))
 
-(defn users-edit [email]
-  (let [user (update-in (repo/find-user email)
-                        [:streets]
-                        #(join ", " %))]
-    (layout/render "users/edit.html" user)))
+(defn split-streets [streets]
+  (map trim (split streets #",")))
 
-(defn users-update [email streets]
-  (repo/update-user email {:streets (map trim (split streets #","))})
-  (layout/render "users/update.html"
+(defn users-create [email streets]
+  (let [streets-seq (split-streets streets)]
+    (if (repo/find-user email)
+      (repo/update-user email {:streets streets-seq})
+      (repo/create-user {:email email :streets streets-seq})))
+  (layout/render "users/create.html"
                  {:email email :streets streets}))
-
-(defn users-create [email]
-  (if-not (repo/find-user email)
-    (create-user email))
-  (response/redirect (str "/users/edit?email=" email)))
 
 (defroutes users-routes
   (GET "/users/new" [] (users-new))
-  (GET "/users/edit" [email] (users-edit email))
-  (POST "/users/update" [email streets] (users-update email streets))
-  (POST "/users/create" [email] (users-create email)))
+  (POST "/users/create" [email streets] (users-create email streets)))
