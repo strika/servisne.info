@@ -11,6 +11,10 @@
 (defn about-page []
   (layout/render "about.html"))
 
+(defn terms-page []
+  (layout/render "terms.html"))
+
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (GET "/about" [] (about-page)))
+  (GET "/about" [] (about-page))
+  (GET "/terms" [] (terms-page)))
