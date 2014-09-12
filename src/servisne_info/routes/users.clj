@@ -5,8 +5,13 @@
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
-(defn users-new []
-  (layout/render "users/new.html"))
+(defn users-delete []
+  (layout/render "users/delete.html"))
+
+(defn users-destroy [email]
+  (if (repo/find-user email)
+    (repo/delete-user email))
+  (layout/render "users/destroy.html"))
 
 (defn split-streets [streets]
   (map trim (split streets #",")))
@@ -20,5 +25,6 @@
                  {:email email :streets streets}))
 
 (defroutes users-routes
-  (GET "/users/new" [] (users-new))
+  (GET "/users/delete" [] (users-delete))
+  (POST "/users/destroy" [email] (users-destroy email))
   (POST "/users/create" [email streets] (users-create email streets)))
