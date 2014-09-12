@@ -32,6 +32,9 @@
 (defn create-user [attributes]
   (mc/insert @db "users" attributes))
 
+(defn delete-user [email]
+   (mc/remove @db "users" {:email email}))
+
 (defn find-user [email]
   (mc/find-one-as-map @db "users" {:email email}))
 

@@ -16,6 +16,11 @@
     (is (= (:email saved-user) (:email user)))
     (is (= (:streets saved-user) (:streets user)))))
 
+(deftest test-delete-user
+  (create-user user)
+  (delete-user (:email user))
+  (is (nil? (find-user (:email user)))))
+
 (deftest test-find-user
   (mc/insert @db "users" user)
   (let [saved-user (find-user (:email user))]

@@ -1,0 +1,23 @@
+{% extends "servisne_info/views/templates/base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2>Odjavljivanje</h2>
+
+    <br/>
+
+    <p>Žao nam je što se odjavljujete. Ako servis nije ispunio vaša očekivanja, značilo bi nam da to čujemo.
+    Slobodno nas kontaktirajte.</p>
+
+    <br/>
+
+    <form action="/users/destroy" method="post" role="form">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input class="form-control" id="email" name="email" placeholder="pera.detlic@crtani.com" type="email">
+      </div>
+      <input type="submit" class="btn btn-primary btn-lg active" value="Odjavi me">
+    </form>
+  </div>
+</div>
+{% endblock %}

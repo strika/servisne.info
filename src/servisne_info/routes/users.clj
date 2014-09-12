@@ -8,6 +8,11 @@
 (defn users-delete []
   (layout/render "users/delete.html"))
 
+(defn users-destroy [email]
+  (if (repo/find-user email)
+    (repo/delete-user email))
+  (layout/render "users/destroy.html"))
+
 (defn split-streets [streets]
   (map trim (split streets #",")))
 
@@ -21,4 +26,5 @@
 
 (defroutes users-routes
   (GET "/users/delete" [] (users-delete))
+  (POST "/users/destroy" [email] (users-destroy email))
   (POST "/users/create" [email streets] (users-create email streets)))
