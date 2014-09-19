@@ -1,20 +1,14 @@
-(ns servisne-info.routes.home
-  (:use compojure.core)
+(ns servisne-info.controllers.home
   (:require [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
+
+(defn about-page []
+  (layout/render "about.html"))
 
 (defn home-page []
   (layout/render
     "home.html"
     {:info-links (repo/find-latest-news)}))
 
-(defn about-page []
-  (layout/render "about.html"))
-
 (defn terms-page []
   (layout/render "terms.html"))
-
-(defroutes home-routes
-  (GET "/" [] (home-page))
-  (GET "/about" [] (about-page))
-  (GET "/terms" [] (terms-page)))
