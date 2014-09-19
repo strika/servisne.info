@@ -2,22 +2,14 @@
   (:use 
         [servisne-info.handler-utils :only [log-request]]
         [servisne-info.tasks :refer [schedule-periodic-tasks]])
-  (:require [compojure.core :refer [defroutes]]            
-            [compojure.route :as route]
-            [environ.core :refer [env]]
+  (:require [environ.core :refer [env]]
             [noir.util.middleware :as middleware]
             [prone.middleware :as prone]
             [selmer.parser :as parser]
             [raven-clj.ring :as sentry]
             [servisne-info.logging :as l]
             [servisne-info.repository :refer [db-connect db-disconnect]]
-            [servisne-info.routes.admin :refer [admin-routes admin-access]]
-            [servisne-info.routes.home :refer [home-routes]]
-            [servisne-info.routes.users :refer [users-routes]]))
-
-(defroutes app-routes
-  (route/resources "/")
-  (route/not-found "Not Found"))
+            [servisne-info.routes :refer [servisne-info-routes admin-access]]))
 
 (defn init
   "init will be called once when
@@ -60,7 +52,7 @@
 
 (def app (middleware/app-handler
            ;; add your application routes here
-           [admin-routes home-routes users-routes app-routes]
+           [servisne-info-routes]
            ;; add custom middleware here
            :middleware [template-error-page capture-exceptions log-request]
            ;; add access rules here
