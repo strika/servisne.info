@@ -1,9 +1,11 @@
-(ns servisne-info.routes.users
-  (:use compojure.core
-        [clojure.string :only [join trim split]])
-  (:require [noir.response :as response]
+(ns servisne-info.controllers.users
+  (:require [clojure.string :refer [join trim split]]
+            [noir.response :as response]
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
+
+(defn- split-streets [streets]
+  (map trim (split streets #",")))
 
 (defn users-delete []
   (layout/render "users/delete.html"))
@@ -13,9 +15,6 @@
     (repo/delete-user email))
   (layout/render "users/destroy.html"))
 
-(defn split-streets [streets]
-  (map trim (split streets #",")))
-
 (defn users-create [email streets]
   (let [streets-seq (split-streets streets)]
     (if (repo/find-user email)
@@ -23,8 +22,3 @@
       (repo/create-user {:email email :streets streets-seq})))
   (layout/render "users/create.html"
                  {:email email :streets streets}))
-
-(defroutes users-routes
-  (GET "/users/delete" [] (users-delete))
-  (POST "/users/destroy" [email] (users-destroy email))
-  (POST "/users/create" [email streets] (users-create email streets)))
