@@ -4,6 +4,6 @@
 
 (defn dashboard []
   (layout/render
-    "dashboard.html"
+    "admin/dashboard.html"
     {:users (repo/find-all-users)
      :news (repo/find-latest-news)}))
