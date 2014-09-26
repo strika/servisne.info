@@ -10,9 +10,14 @@
 (use-fixtures :once (compose-fixtures stub-emails init-database))
 (use-fixtures :each (compose-fixtures clean-emails clean-database))
 
-(def user {:email "nebojsa.stricevic@gmail.com" :streets ["Bulevar oslobodjenja" "Dunavska"]})
-(def power-outage {:title "Power outage" :url "http://example.com/power_outage" :content "Power outage in Dunavska"})
-(def closed-road {:title "Closed road" :url "http://example.com/closed_road" :content "Closed road somewhere"})
+(def user {:email "john@example.com"
+           :streets ["Bulevar oslobodjenja" "Dunavska"]})
+(def power-outage {:title "Power outage"
+                   :url "http://example.com/power_outage"
+                   :content "Power outage in Dunavska"})
+(def closed-road {:title "Closed road"
+                  :url "http://example.com/closed_road"
+                  :content "Closed road somewhere"})
 
 (deftest find-news-for-user-test
   (repo/create-user user)
@@ -22,7 +27,18 @@
         result-user (first result)
         result-news (second result)]
     (is (= result-user user))
+    (is (not-empty result-news))
     (is (= (:url (first result-news)) (:url power-outage)))))
+
+(deftest similar-street-name-test
+  (let [user {:email "john@example.com"
+              :streets ["Svetozara Miletića" "1300 kaplara"]}]
+    (repo/create-user user)
+    (repo/create-news {:title "Closed road"
+                       :url "http://example.com/closed_road"
+                       :content "Closed road in Svetozara Ćorovića."})
+    (is (= [user []]
+           (find-news-for-user user)))))
 
 (deftest send-notifications-test
   (repo/create-user user)
