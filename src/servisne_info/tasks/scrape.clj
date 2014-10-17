@@ -37,4 +37,3 @@
   (deftask "scrape"
     (let [saved-links-count (save-links)]
       (l/info "Scraping new links" {:count saved-links-count}))))
-

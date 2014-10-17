@@ -46,8 +46,13 @@
       (is (= (:streets saved-user) (:streets new-attributes))))))
 
 ; News
-(def power-outage {:title "Power outage" :url "http://example.com/power_outage"})
-(def old-news {:title "Old news" :url "http://example.com/old_news" :sent true})
+(def power-outage {:title "Power outage"
+                   :url "http://example.com/power_outage"
+                   :content "Power outage in Dunavska street"})
+
+(def old-news {:title "Old news"
+               :url "http://example.com/old_news"
+               :sent true})
 
 (deftest test-create-news
   (create-news power-outage)
@@ -80,3 +85,24 @@
   (let [unsent-news (find-unsent-news)]
     (is (= 1 (count unsent-news)))
     (is (= (:url power-outage) (:url (first unsent-news))))))
+
+(deftest test-search-news
+  (testing "search term with one word"
+    (mc/insert @db "news" power-outage)
+    (let [result (search-news "Dunavska")]
+      (is (= (:url (first result)) (:url power-outage)))))
+
+  (testing "search term with two words"
+    (let [power-outage {:title "Power outage"
+                        :url "http://example.com/power_outage"
+                        :content "Power outage in 1300 kaplara street"}]
+      (mc/insert @db "news" power-outage)
+      (let [result (search-news "1300 kaplara")]
+        (is (= (:url (first result)) (:url power-outage))))))
+
+  (testing "search term with similar words"
+    (let [closed-road {:title "Closed road"
+                       :url "http://example.com/closed_road"
+                       :content "Closed road in Svetozara Ćorovića."}]
+      (mc/insert @db "news" closed-road)
+      (is (empty? (search-news "Svetozara Miletića"))))))

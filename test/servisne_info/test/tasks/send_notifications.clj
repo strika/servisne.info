@@ -40,6 +40,17 @@
     (is (= [user []]
            (find-news-for-user user)))))
 
+(deftest two-words-street-name
+  (let [user {:email "john@example.com"
+              :streets ["1300 kaplara"]}]
+    (repo/create-user user)
+    (repo/create-news {:title "Closed road"
+                       :url "http://example.com/closed_road"
+                       :content "Closed road in 1300 kaplara street."})
+    (let [[result-user result-news] (find-news-for-user user)]
+      (is (= result-user user))
+      (is (not-empty result-news)))))
+
 (deftest send-notifications-test
   (repo/create-user user)
   (repo/create-news power-outage)

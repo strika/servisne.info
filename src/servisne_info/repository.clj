@@ -1,5 +1,6 @@
 (ns servisne-info.repository
-  (:require [environ.core :refer [env]]
+  (:require [clojure.string :refer [split]]
+            [environ.core :refer [env]]
             [monger.core :as mg]
             [monger.collection :as mc]
             [monger.conversion :refer [from-db-object]]
@@ -69,10 +70,15 @@
     (mq/sort (array-map :created-at -1))
     (mq/limit 10)))
 
+(defn escape-search-term [search]
+  (if (> (count (split search #" ")) 1)
+    (str "\"" search "\"")
+    search))
+
 (defn search-news [search]
   (map :obj
     (ms/results-from
-      (ms/search @db "news" search))))
+      (ms/search @db "news" (escape-search-term search)))))
 
 (defn find-unsent-news []
   (mq/with-collection @db "news"
