@@ -1,7 +1,8 @@
 (ns servisne-info.tasks
-  (:use [servisne-info.tasks.scrape :only [scrape-task]]
-        [servisne-info.tasks.send-notifications :only [send-notifications-task]])
-  (:require [overtone.at-at :as at-at]))
+  (:require [overtone.at-at :as at-at]
+            [servisne-info.tasks.scrape :refer [scrape-task]]
+            [servisne-info.tasks.send-notifications :refer [send-notifications-task]]
+            [servisne-info.utils :refer [production?]]))
 
 (def tasks-pool (at-at/mk-pool :cpu-count 1))
 (def default-period (* 60 60 1000)) ; one hour
@@ -14,5 +15,7 @@
   (doseq [task @periodic-tasks]
     (at-at/every default-period task tasks-pool :initial-delay (/ default-period 10))))
 
-(add-periodic-task scrape-task)
-(add-periodic-task send-notifications-task)
+(if production?
+  (do
+    (add-periodic-task scrape-task)
+    (add-periodic-task send-notifications-task)))
