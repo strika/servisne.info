@@ -17,7 +17,7 @@
     (repo/create-news power-outage)
     (-> (session app)
         (visit "/")
-        (within [:div.jumbotron :h2]
-          (has (text? "Ne dozvolite da vas nestanak struje iznenadi")))
+        (within [:.intro :h3]
+          (has (text? "Budite spremni za nestanak struje,  \n      vode ili grejanja")))
         (within [:div.latest-info :li]
           (has (text? (:title power-outage)))))))
