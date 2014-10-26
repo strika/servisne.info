@@ -1,7 +1,7 @@
 {% extends "servisne_info/views/layouts/base.html" %}
 {% block content %}
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6 col-md-offset-3 main-content">
       <h2>Dobrodošli na servisne.info</h2>
 
       <p>servisne.info vam šalju korisne servisne informacije na mejl za ulicu ili deo grada koji odaberete.</p>
@@ -10,29 +10,25 @@
       <br/>
 
       <p>Servis je baziran na slobodnom softveru. Kod možete preuzeti sa <a href="http://github.com/strika/servisne.info" target="_blank" class="a-green">GitHuba.</a></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
+      
       <h3 class="autori text-centered">Autori</h3>
+      
+      <div class="row">
+        <div class="col-md-6 avatar-tanja">
+          <div class="avatar tanja">
+          </div>
+          <br/><br/>
+          <p>Za izgled servisa pobrinula se <a href="http://github.com/tanjass" target="_blank" class="a-green">Tanja</a>.</p>
+        </div>
+        <div class="col-md-6">
+          <div class="avatar nebojsa">
+          </div>
+          <br/><br/>
+          <p>Za zupčanike zadužen je <a href="http://github.com/strika" target="_blank" class="a-green">Nebojša</a>.</p>
+        </div>
+      </div>	
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-md-4 col-md-offset-2 avatar-tanja">
-      <div class="avatar tanja">
-      </div>
-      <br/><br/>
-      <p>Za izgled servisa pobrinula se <a href="http://github.com/tanjass" target="_blank" class="a-green">Tanja</a>.</p>
-    </div>
-    <div class="col-md-4 col-md-offset-">
-      <div class="avatar nebojsa">
-      </div>
-      <br/><br/>
-      <p>Za zupčanike zadužen je <a href="http://github.com/strika" target="_blank" class="a-green">Nebojša</a>.</p>
-    </div>
-  </div>	
 
   <script>
     $(function() {

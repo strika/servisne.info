@@ -1,18 +1,21 @@
 {% extends "servisne_info/views/layouts/base.html" %}
 {% block content %}
 
-<div class="row text-centered">
-  <div class="col-md-12">
-    <div class="jumbotron">
-      <h2>Ne dozvolite da vas nestanak struje iznenadi</h2>
-      <p>servisne.info vam šalju korisne servisne informacije na mejl za ulice koje odaberete.
-      Budite spremni za nestanak struje, vode ili grejanja.</p>
-    </div>
-  </div>
-</div>
-
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-6 col-md-offset-3 main-content">
+    <h2>Ne dozvolite da vas nestanak struje iznenadi</h2>
+    <p>servisne.info vam šalju korisne servisne informacije na mejl za ulice koje odaberete.
+      Budite spremni za nestanak struje, vode ili grejanja.</p>
+    
+    <p>Unesite <strong>ulice u Novom Sadu</strong> koje vas interesuju, odvojene zarezom.
+    Preporučujemo Vam da unesete naziv ulice u svim oblicima koji se koriste u redovnoj upotrebi.
+    Na primer "Svetozara Miletića" i "Miletićeva".
+    Nije neophodno koristiti latinične karaktere.</p>
+
+    <p>Unošenjem svoje imejl adrese slažete se sa <a href="/terms" class="a-green">uslovima korišćenja</a>.</p>
+
+    <p>Ako želite da prestanete da koristite servisne.info, uvek se možete <a href="{{servlet-context}}/users/delete" class="a-green">odjaviti</a>.</p>
+    
     <form action="{{servlet-context}}/users/create" method="post" role="form">
       <div class="form-group">
         <label for="email">Email:</label>
@@ -27,21 +30,7 @@
 
       <input type="submit" class="btn btn-primary btn-lg active" value="Prijavi me">
     </form>
-  </div>
-  <div class="col-md-6">
-    <p>Unesite <strong>ulice u Novom Sadu</strong> koje vas interesuju, odvojene zarezom.
-    Preporučujemo Vam da unesete naziv ulice u svim oblicima koji se koriste u redovnoj upotrebi.
-    Na primer "Svetozara Miletića" i "Miletićeva".
-    Nije neophodno koristiti latinične karaktere.</p>
-
-    <p>Unošenjem svoje imejl adrese slažete se sa <a href="/terms" class="a-green">uslovima korišćenja</a>.</p>
-
-    <p>Ako želite da prestanete da koristite servisne.info, uvek se možete <a href="{{servlet-context}}/users/delete" class="a-green">odjaviti</a>.</p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6 latest-info">
+    <div class="latest-info">
     <h2>Poslednje servisne informacije</h2>
 
     <ul>
@@ -49,6 +38,7 @@
       <li><a href="{{link.url}}">{{link.title}}</a></li>
       {% endfor %}
     </ul>
+  </div>
   </div>
 </div>
 {% endblock %}

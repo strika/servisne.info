@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background-color: #ececec;
+  background: url(/images/rain-on-window.jpg) no-repeat #ececec;
   padding: 0;
   font-family: 'Fira Sans', sans-serif;
   color: #878787;
@@ -13,6 +13,14 @@ body {
   min-height: 100%;
   position: relative;
   padding-bottom: 6em;
+}
+
+.main-content {
+  background-color: rgba(248, 248, 248, 0.9);
+}
+
+.main-content form {
+  margin: 30px 0;
 }
 
 a.a-green {
@@ -78,7 +86,6 @@ div.container .btn-primary {
   background-color: #7D9C9F;
   color: #ECECEC;
   border: 0;
-  margin-top: 30px;
 }
 
 div.container .btn-huge {
@@ -139,13 +146,4 @@ div.container .btn-primary:hover {
 
 .text-centered {
   text-align: center;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4em;
-  background-color: #F8F8F8;
-
 }
