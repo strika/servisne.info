@@ -4,9 +4,14 @@ html {
 
 body {
   background: url(/images/rain-on-window.jpg) no-repeat #ececec;
+  background-position: 100%;
   padding: 0;
   font-family: 'Fira Sans', sans-serif;
   color: #878787;
+}
+
+.top-30 {
+  margin-top: 30px;
 }
 
 .content {
@@ -70,13 +75,11 @@ a.a-green {
   background-position: 0 0;
 }
 
-h2 {
+h1, h2, h3, h4, h5, h6 {
   color: #AD235E;
-}
-
-h3, h4 {
   padding-bottom: 20px;
 }
+
 
 h3.autori {
   padding-top: 2em;
