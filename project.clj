@@ -9,7 +9,7 @@
                  [compojure "1.2.1"]
                  [enlive "1.1.5"]
                  [environ "1.0.0"]
-                 [http-kit "2.1.16"]
+                 [http-kit "2.1.19"]
                  [kerodon "0.4.0"]
                  [lib-noir "0.7.9"]
                  [org.clojure/tools.nrepl "0.2.3"]
