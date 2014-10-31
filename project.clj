@@ -32,7 +32,7 @@
                        :stacktraces?  false
                        :auto-reload?  false}}
    :dev {:dependencies [[ring-mock "0.1.5"]
-                        [ring/ring-devel "1.2.1"]]
+                        [ring/ring-devel "1.3.1"]]
          :env {:selmer-dev true}}}
   :min-lein-version "2.0.0"
   :aliases {"hello"              ["run" "-m" "servisne-info.tasks.hello-world"]
