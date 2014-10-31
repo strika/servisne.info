@@ -16,9 +16,6 @@
         content (ns-scraper/info-page-content (html-resource url))]
     (assoc link :content content)))
 
-(defn- timestamp-link [link]
-  (assoc link :created-at (now)))
-
 (defn- save-news [news]
   (doseq [item news]
     (repo/create-news item))
@@ -30,7 +27,6 @@
   (->> (ns-scraper/links)
        (filter new-link?)
        (map scrape-content)
-       (map timestamp-link)
        (save-news)))
 
 (def scrape-task

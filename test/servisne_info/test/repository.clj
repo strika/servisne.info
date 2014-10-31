@@ -14,7 +14,8 @@
   (create-user user)
   (let [saved-user (mc/find-one-as-map @db "users" {:email (:email user)})]
     (is (= (:email saved-user) (:email user)))
-    (is (= (:streets saved-user) (:streets user)))))
+    (is (= (:streets saved-user) (:streets user)))
+    (is (not (nil? (:created-at saved-user))))))
 
 (deftest test-delete-user
   (create-user user)
@@ -58,7 +59,8 @@
   (create-news power-outage)
   (let [saved-news (mc/find-one-as-map @db "news" {:url (:url power-outage)})]
     (is (= (:title saved-news) (:title power-outage)))
-    (is (= (:url saved-news) (:url saved-news)))))
+    (is (= (:url saved-news) (:url saved-news)))
+    (is (not (nil? (:created-at saved-news))))))
 
 (deftest test-find-news
   (mc/insert @db "news" power-outage)
