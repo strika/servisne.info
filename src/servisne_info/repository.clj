@@ -7,10 +7,14 @@
             [monger.operators :refer :all]
             [monger.query :as mq]
             [monger.search :as ms]
-            [servisne-info.logging :as l]))
+            [servisne-info.logging :as l]
+            [servisne-info.utils :refer [now]]))
 
 (def connection (atom nil))
 (def db (atom nil))
+
+(defn- add-timestamp [attributes]
+  (assoc attributes :created-at (now)))
 
 ; Database configuration
 (defn db-connect []
@@ -31,7 +35,7 @@
 
 ; User
 (defn create-user [attributes]
-  (mc/insert @db "users" attributes))
+  (mc/insert @db "users" (add-timestamp attributes)))
 
 (defn delete-user [email]
    (mc/remove @db "users" {:email email}))
@@ -52,7 +56,7 @@
 (def news-attributes [:url :title :content :sent :created-at])
 
 (defn create-news [attributes]
-  (mc/insert @db "news" attributes))
+  (mc/insert @db "news" (add-timestamp attributes)))
 
 (defn find-news [url]
   (mc/find-one-as-map @db "news" {:url url}))
