@@ -11,11 +11,14 @@
 
     <br/>
 
-    <form action="/users/destroy" method="post" role="form">
+    <form action="{{servlet-context}}/users/destroy" method="post" role="form">
+      {% csrf-token %}
+
       <div class="form-group">
         <label for="email">Email:</label>
         <input class="form-control" id="email" name="email" placeholder="pera.detlic@crtani.com" type="email">
       </div>
+
       <input type="submit" class="btn btn-primary btn-lg active" value="Odjavi me">
     </form>
   </div>

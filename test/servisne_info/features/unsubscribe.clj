@@ -16,8 +16,7 @@
   (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
     (repo/create-user user)
     (-> (session app)
-        (visit "/")
-        (follow "odjaviti")
+        (visit "/users/delete")
         (fill-in :#email (:email user))
         (press "Odjavi me")
         (within [:h2]

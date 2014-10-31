@@ -9,5 +9,8 @@
 (defn log-request [handler]
   (fn [request]
     (if-not (asset? request)
-      (l/info "Request start" {:method (:request-method request) :uri (:uri request) :query (:query-string request)}))
+      (l/info "Request start" {:method (:request-method request)
+                               :uri (:uri request)
+                               :query (:query-string request)
+                               :form-params (:form-params request)}))
     (handler request)))
