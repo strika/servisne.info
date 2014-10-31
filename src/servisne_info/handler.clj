@@ -7,6 +7,7 @@
             [prone.middleware :as prone]
             [selmer.parser :as parser]
             [raven-clj.ring :as sentry]
+            [ring.util.anti-forgery :refer [anti-forgery-field]]
             [servisne-info.logging :as l]
             [servisne-info.repository :refer [db-connect db-disconnect]]
             [servisne-info.routes :refer [servisne-info-routes admin-access]]))
@@ -17,6 +18,8 @@
    an app server such as Tomcat
    put any initialization code here"
   []
+
+  (parser/add-tag! :csrf-token (fn [_ _] (anti-forgery-field)))
 
   (l/setup)
   (db-connect)

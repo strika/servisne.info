@@ -1,6 +1,7 @@
 (ns servisne-info.controllers.users
   (:require [clojure.string :refer [join trim split]]
             [noir.response :as response]
+            [servisne-info.logging :as l]
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
@@ -12,7 +13,9 @@
 
 (defn users-destroy [email]
   (if (repo/find-user email)
-    (repo/delete-user email))
+    (do
+      (l/info "Removing user" {:email email})
+      (repo/delete-user email)))
   (layout/render "users/destroy.html"))
 
 (defn users-create [email streets]

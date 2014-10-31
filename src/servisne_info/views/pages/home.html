@@ -16,6 +16,8 @@
     Nije neophodno koristiti latinične karaktere.</p>
 
     <form action="{{servlet-context}}/users/create" method="post" role="form">
+      {% csrf-token %}
+
       <div class="form-group">
         <label for="email">Email:</label>
         <input class="form-control" id="email" name="email" placeholder="pera.detlic@crtani.com" type="email">
