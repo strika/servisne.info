@@ -2,7 +2,7 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [com.draines/postal "1.11.1"]
+                 [com.draines/postal "1.11.2"]
                  [com.novemberain/monger "2.0.0"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/timbre "2.7.1"]
