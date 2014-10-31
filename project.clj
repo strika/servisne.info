@@ -6,7 +6,6 @@
                  [com.novemberain/monger "2.0.0"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/timbre "3.3.1"]
-                 [com.taoensso/tower "2.0.1"]
                  [compojure "1.1.6"]
                  [enlive "1.1.5"]
                  [environ "0.4.0"]
