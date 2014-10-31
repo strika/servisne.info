@@ -16,7 +16,7 @@
                  [overtone/at-at "1.2.0"]
                  [prone "0.6.0"]
                  [ring-server "0.3.1"]
-                 [selmer "0.5.8"]
+                 [selmer "0.7.2"]
                  [raven-clj "1.0.0"]]
 
   :repl-options {:init-ns servisne-info.repl}
