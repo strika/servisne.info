@@ -12,7 +12,7 @@
                  [http-kit "2.1.19"]
                  [kerodon "0.4.0"]
                  [lib-noir "0.9.4"]
-                 [org.clojure/tools.nrepl "0.2.3"]
+                 [org.clojure/tools.nrepl "0.2.6"]
                  [overtone/at-at "1.2.0"]
                  [prone "0.6.0"]
                  [ring-server "0.3.1"]
