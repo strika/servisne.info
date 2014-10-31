@@ -1,50 +1,52 @@
 {% extends "servisne_info/views/layouts/base.html" %}
 {% block content %}
 
-<h2>Users</h2>
+<div class="row">
+  <div class="col-md-12 main-content">
+    <h2>Users</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Streets</th>
-      <th>Created At</th>
-    </tr>
-  </thead>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Streets</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    {% for user in users %}
-    <tr>
-      <td>{{user.email}}</td>
-      <td>{{user.streets}}</td>
-      <td>{{user.created-at|date:"yyyy-MM-dd"}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{user.email}}</td>
+          <td>{{user.streets}}</td>
+          <td>{{user.created-at|date:"yyyy-MM-dd"}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
-<h2>News</h2>
+    <h2>News</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>URL</th>
-      <th>Sent</th>
-      <th>Created At</th>
-    </tr>
-  </thead>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>News</th>
+          <th>Sent</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
 
-  <tbody>
-    {% for info in news %}
-    <tr>
-      <td>{{info.title}}</td>
-      <td>{{info.url}}</td>
-      <td>{{info.sent}}</td>
-      <td>{{info.created-at|date:"yyyy-MM-dd"}}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+      <tbody>
+        {% for info in news %}
+        <tr>
+          <td><a href="{{info.url}}">{{info.title}}</a></td>
+          <td>{{info.sent}}</td>
+          <td>{{info.created-at|date:"yyyy-MM-dd"}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
 {% endblock %}
