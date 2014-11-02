@@ -17,7 +17,7 @@
     (repo/create-news power-outage)
     (-> (session app)
         (visit "/")
-        (within [:.intro :h3]
-          (has (text? "Budite spremni za nestanak struje,  \n      vode ili grejanja")))
+        (within [:h2]
+          (has (text? "Budite spremni za nestanak struje,  \n    vode ili grejanja")))
         (within [:div.latest-info :li]
           (has (text? (:title power-outage)))))))
