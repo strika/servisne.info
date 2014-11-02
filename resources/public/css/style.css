@@ -22,7 +22,7 @@ body {
 
 .main-content {
   background-color: rgba(248, 248, 248, 1);
-  padding-bottom: 20px;
+  padding: 0 22px 22px 22px;
 }
 
 .main-content form {
