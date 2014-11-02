@@ -77,23 +77,14 @@ h3.autori {
   padding-top: 2em;
 }
 
-div.container .btn-primary {
-  background-color: #7D9C9F;
+.btn-primary {
+  background-color: #098490;
   color: #ECECEC;
   border: 0;
 }
 
-div.container .btn-huge {
-  padding: 10px 50px;
-  font-size: 3em;
-  border-radius: 20px;
-  -webkit-box-shadow: 5px 5px #6e898c;
-  -moz-box-shadow: 5px 5px #6e898c;
-  box-shadow: 5px 5px #6e898c;
-}
-
-div.container .btn-primary:hover {
-  background-color: #83a3a7;
+.btn-primary:hover {
+  background-color: #0b96a3;
 }
 
 .latest-info {
