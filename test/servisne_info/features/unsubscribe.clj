@@ -22,3 +22,10 @@
         (within [:h2]
           (has (text? "Odjavljivanje završeno")))
         (assert-user-does-not-exist user))))
+
+(deftest unsubscribe-without-email
+  (-> (session app)
+      (visit "/users/delete")
+      (press "Odjavi me")
+      (within [:h2]
+        (has (text? "Odjavljivanje nije uspelo")))))

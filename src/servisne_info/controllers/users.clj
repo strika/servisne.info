@@ -12,11 +12,12 @@
   (layout/render "users/delete.html"))
 
 (defn users-destroy [email]
-  (if (repo/find-user email)
-    (do
-      (l/info "Removing user" {:email email})
-      (repo/delete-user email)))
-  (layout/render "users/destroy.html"))
+  (let [user (repo/find-user email)]
+    (if user
+      (do
+        (l/info "Removing user" {:email email})
+        (repo/delete-user email)))
+    (layout/render "users/destroy.html" {:user user})))
 
 (defn create-or-update-user [email streets]
   (let [streets-seq (split-streets streets)]

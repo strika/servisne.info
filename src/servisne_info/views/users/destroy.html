@@ -2,16 +2,22 @@
 {% block content %}
 <div class="row">
   <div class="col-md-6 col-md-offset-3 main-content">
-    <h2>Odjavljivanje završeno</h2>
+    {% if user %}
+      <h2>Odjavljivanje završeno</h2>
 
-    <br/>
+      <br/>
 
-    <p>Žao nam je što se odjavljujete. Ako servis nije ispunio vaša očekivanja, značilo bi nam da to čujemo.
-    Slobodno nas kontaktirajte.</p>
+      <p>Žao nam je što se odjavljujete. Ako servis nije ispunio vaša očekivanja, značilo bi nam da to čujemo.
+      Slobodno nas kontaktirajte.</p>
 
-    <br/>
+      <br/>
 
-    <p>Želimo vam lep ostatak dana.</p>
+      <p>Želimo vam lep ostatak dana.</p>
+    {% else %}
+      <h2>Odjavljivanje nije uspelo</h2>
+
+      <p>Niste uneli ispravnu email adresu ili korisnik sa unetom email adresom ne postoji.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -35,7 +35,7 @@
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user))))
 
-(deftest empty-registration
+(deftest registration-without-email
   (-> (session app)
       (visit "/")
       (press "Prijavi me")
