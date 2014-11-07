@@ -4,7 +4,7 @@
             [servisne-info.logging :as l]
             [servisne-info.views.email :as email]))
 
-(def default-from "nebojsa.stricevic+servisne@gmail.com")
+(def default-from "info@servisne.info")
 
 (defn send-email
   [to subject body]
