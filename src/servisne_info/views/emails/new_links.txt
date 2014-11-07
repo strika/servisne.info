@@ -7,6 +7,11 @@ Pronašli smo vesti koje vas možda zanimaju:
 - {{link}}
 {% endfor %}
 
+Ako su vam ove vesti korisne, pomozite nam da se glas proširi.
+Bićemo vam zahvalni ako nas pomenete na Twitteru ili Facebooku.
+
+Ako imate predlog, ideju, žalbu ili molbu, slobodno odgovorite na ovaj mejl.
+
 Pozdrav,
 
 servisne.info
