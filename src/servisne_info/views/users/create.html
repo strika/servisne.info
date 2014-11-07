@@ -2,12 +2,18 @@
 {% block content %}
 <div class="row">
   <div class="col-md-6 col-md-offset-3 main-content">
-    <h2>Podešavanje završeno!</h2>
+    {% if email %}
+      <h2>Uspešno ste se prijavili!</h2>
 
-    <p>Poslaćemo Vam poruku na <strong class="email">{{email}}</strong> ako uočimo novu
-    servisnu informaciju za ulice <strong class="streets">{{streets}}</strong>.</p>
+      <p>Poslaćemo Vam poruku na <strong class="email">{{email}}</strong> ako uočimo novu
+      servisnu informaciju za ulice <strong class="streets">{{streets}}</strong>.</p>
 
-    <p>Želimo Vam lep ostatak dana!</p>
+      <p>Želimo Vam lep ostatak dana!</p>
+    {% else %}
+      <h2>Prijava nije uspela!</h2>
+
+      <p>Morate uneti ispravnu email adresu.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

@@ -28,9 +28,16 @@
         (fill-in :#streets (join ", " (:streets user)))
         (press "Prijavi me")
         (within [:h2]
-          (has (text? "Podešavanje završeno!")))
+          (has (text? "Uspešno ste se prijavili!")))
         (within [:.email]
           (has (text? "john@example.com")))
         (within [:.streets]
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user))))
+
+(deftest registration-without-email
+  (-> (session app)
+      (visit "/")
+      (press "Prijavi me")
+      (within [:h2]
+        (has (text? "Prijava nije uspela!")))))
