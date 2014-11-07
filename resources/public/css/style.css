@@ -49,11 +49,6 @@ body {
   background-position: 0 -420px;
 }
 
-.avatar-tanja {
-  padding-bottom: 1em;
-  text-align: right;
-}
-
 .nebojsa {
   background-position: 0 -210px;
   border-radius: 100px 10px 100px 100px; 
@@ -128,8 +123,4 @@ h3.autori {
   display: table-cell;
   vertical-align: middle;
   font-size: 2.5em;
-}
-
-.text-centered {
-  text-align: center;
 }
