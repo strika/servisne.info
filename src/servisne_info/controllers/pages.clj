@@ -5,6 +5,9 @@
 (defn about-page []
   (layout/render "pages/about.html"))
 
+(defn contact-page []
+  (layout/render "pages/contact.html"))
+
 (defn home-page []
   (layout/render
     "pages/home.html"
