@@ -14,6 +14,7 @@
 (defroutes servisne-info-routes
   (GET "/admin" [] (restricted (admin/dashboard)))
   (GET "/about" [] (pages/about-page))
+  (GET "/contact" [] (pages/contact-page))
   (GET "/terms" [] (pages/terms-page))
   (POST "/users/create" [email streets] (users/users-create email streets))
   (GET "/users/delete" [] (users/users-delete))

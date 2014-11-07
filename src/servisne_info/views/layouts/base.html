@@ -5,7 +5,10 @@
       <title>Dobrodošli na servisne.info</title>
 
       <link href='http://fonts.googleapis.com/css?family=Fira+Sans' rel='stylesheet' type='text/css'>
-      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+      {% style "/lib/fontello/css/fontello.css" %}
+      {% style "/lib/fontello/css/animation.css" %}
       {% style "/css/screen.css" %}
       {% style "/css/style.css" %}
 
@@ -35,6 +38,7 @@
                   <ul class="nav navbar-nav">
                       <li class="{{home-selected}}"><a href="{{servlet-context}}/">Početna</a></li>
                       <li class="{{about-selected}}"><a href="{{servlet-context}}/about">O servisu</a></li>
+                      <li class="{{contact-selected}}"><a href="{{servlet-context}}/contact">Kontakt</a></li>
                   </ul>
                 </div>
               </div>
@@ -48,7 +52,7 @@
         </div>
       </div>
 
-      {% script "/js/bootstrap.min.js" %}
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
       <script type="text/javascript">
           var context = "{{servlet-context}}";
