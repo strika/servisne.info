@@ -17,7 +17,7 @@
                  [prone "0.6.0"]
                  [ring-server "0.3.1"]
                  [selmer "0.7.2"]
-                 [raven-clj "1.1.0"]]
+                 [raven-clj "1.2.0"]]
 
   :repl-options {:init-ns servisne-info.repl}
   :plugins [[lein-ring "0.8.10"]
