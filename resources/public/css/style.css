@@ -65,8 +65,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: #AD235E;
   padding-bottom: 20px;
+  padding-top: 20px;
+  margin-top: 0;
 }
-
 
 h3.autori {
   padding-top: 2em;
@@ -123,4 +124,10 @@ h3.autori {
   display: table-cell;
   vertical-align: middle;
   font-size: 2.5em;
+}
+
+@media(max-width: 768px) {
+  body {
+    background: none #ececec;
+  }
 }
