@@ -1,5 +1,7 @@
 (ns servisne-info.repository
-  (:require [clojure.string :refer [split]]
+  (:require monger.joda-time
+            [clj-time.core :as t]
+            [clojure.string :refer [split]]
             [environ.core :refer [env]]
             [monger.core :as mg]
             [monger.collection :as mc]
@@ -7,14 +9,13 @@
             [monger.operators :refer :all]
             [monger.query :as mq]
             [monger.search :as ms]
-            [servisne-info.logging :as l]
-            [servisne-info.utils :refer [now]]))
+            [servisne-info.logging :as l]))
 
 (def connection (atom nil))
 (def db (atom nil))
 
 (defn- add-timestamp [attributes]
-  (assoc attributes :created-at (now)))
+  (assoc attributes :created-at (t/now)))
 
 ; Database configuration
 (defn db-connect []
@@ -92,8 +93,27 @@
 (defn remove-news []
   (mc/remove @db "news"))
 
+; Events
+
+(defn create-event [attributes]
+  (mc/insert @db "events" (add-timestamp attributes)))
+
+(defn find-all-events []
+  (map #(from-db-object % true) (mc/find @db "events")))
+
+(defn find-events-for-yesterday []
+  (let [today (t/plus (t/now) (t/minutes 60))
+        yesterday (t/minus today (t/days 1))]
+    (map #(from-db-object % true)
+         (mc/find @db "events" {$and [{:created-at {$gt yesterday}}
+                                      {:created-at {$lte today}}]}))))
+
+(defn remove-events []
+  (mc/remove @db "events"))
+
 ; All
 
 (defn remove-all []
   (remove-users)
-  (remove-news))
+  (remove-news)
+  (remove-events))
