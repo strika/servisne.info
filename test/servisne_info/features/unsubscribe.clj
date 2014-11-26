@@ -9,8 +9,9 @@
 (use-fixtures :once init-database)
 (use-fixtures :each clean-database)
 
-(defn assert-user-does-not-exist [_ user]
-  (is (nil? (repo/find-user (:email user)))))
+(defn assert-user-does-not-exist [session user]
+  (is (nil? (repo/find-user (:email user))))
+  session)
 
 (deftest unsubscribe
   (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
@@ -21,7 +22,8 @@
         (press "Odjavi me")
         (within [:h2]
           (has (text? "Odjavljivanje završeno")))
-        (assert-user-does-not-exist user))))
+        (assert-user-does-not-exist user)
+        (assert-event-recorded))))
 
 (deftest unsubscribe-without-email
   (-> (session app)

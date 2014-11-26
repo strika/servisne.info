@@ -17,7 +17,6 @@
 (defn send-notification [user news]
   (if-not (empty? news)
     (do
-      (l/info "Sending news for user" {:user (:email user)})
       (send-news-email user news))))
 
 (defn send-users-notifications [users]
