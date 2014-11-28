@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [clj-time "0.8.0"]
-                 [com.draines/postal "1.11.2"]
+                 [com.draines/postal "1.11.3"]
                  [com.novemberain/monger "2.0.0"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/timbre "3.3.1"]
@@ -11,13 +11,13 @@
                  [enlive "1.1.5"]
                  [environ "1.0.0"]
                  [http-kit "2.1.19"]
-                 [kerodon "0.4.0"]
+                 [kerodon "0.5.0"]
                  [lib-noir "0.9.4"]
                  [org.clojure/tools.nrepl "0.2.6"]
                  [overtone/at-at "1.2.0"]
                  [prone "0.6.0"]
                  [ring-server "0.3.1"]
-                 [selmer "0.7.2"]
+                 [selmer "0.7.5"]
                  [raven-clj "1.2.0"]]
 
   :repl-options {:init-ns servisne-info.repl}
@@ -33,7 +33,7 @@
                        :stacktraces?  false
                        :auto-reload?  false}}
    :dev {:dependencies [[ring-mock "0.1.5"]
-                        [ring/ring-devel "1.3.1"]]
+                        [ring/ring-devel "1.3.2"]]
          :env {:selmer-dev true}}}
   :min-lein-version "2.0.0"
   :aliases {"hello"              ["run" "-m" "servisne-info.tasks.hello-world"]
