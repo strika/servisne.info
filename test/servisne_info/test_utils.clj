@@ -1,5 +1,6 @@
 (ns servisne-info.test-utils
-  (:require [servisne-info.repository :as repo]
+  (:require [clojure.test :refer :all]
+            [servisne-info.repository :as repo]
             [servisne-info.handler :refer [init]]
             [servisne-info.notifications :as notifications]))
 
@@ -26,3 +27,9 @@
 (defn clean-emails [t]
   (reset! sent-emails [])
   (t))
+
+(defn assert-event-recorded
+  ([] (is (= 1 (count (repo/find-all-events)))))
+  ([session]
+   (assert-event-recorded)
+   session))

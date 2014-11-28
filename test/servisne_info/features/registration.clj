@@ -33,7 +33,8 @@
           (has (text? "john@example.com")))
         (within [:.streets]
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
-        (assert-user-exists user))))
+        (assert-user-exists user)
+        (assert-event-recorded))))
 
 (deftest registration-without-email
   (-> (session app)

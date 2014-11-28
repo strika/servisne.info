@@ -58,4 +58,6 @@
   (send-notifications)
   (is (= 1 (count @sent-emails)))
   (is (= (:email user) (:to (first @sent-emails))))
-  (is (= 0 (count (repo/find-unsent-news)))))
+  (is (= 0 (count (repo/find-unsent-news))))
+  (is (= 1 (count (repo/find-all-events))))
+  (assert-event-recorded))

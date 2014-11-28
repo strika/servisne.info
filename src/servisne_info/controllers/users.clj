@@ -1,7 +1,7 @@
 (ns servisne-info.controllers.users
   (:require [clojure.string :refer [join trim split]]
             [noir.response :as response]
-            [servisne-info.logging :as l]
+            [servisne-info.event :as event]
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
@@ -15,7 +15,7 @@
   (let [user (repo/find-user email)]
     (if user
       (do
-        (l/info "Removing user" {:email email})
+        (event/record "Removing user" {:email email})
         (repo/delete-user email)))
     (layout/render "users/destroy.html" {:user user})))
 
@@ -23,7 +23,9 @@
   (let [streets-seq (split-streets streets)]
     (if (repo/find-user email)
       (repo/update-user email {:streets streets-seq})
-      (repo/create-user {:email email :streets streets-seq}))))
+      (do
+        (repo/create-user {:email email :streets streets-seq})
+        (event/record "User signed up" {:email email})))))
 
 (defn users-create [email streets]
   (if email

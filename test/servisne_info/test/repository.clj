@@ -7,7 +7,8 @@
 (use-fixtures :once init-database)
 (use-fixtures :each clean-database)
 
-; User
+; Users
+
 (def user {:email "john@example.com" :streets ["Bulevar oslobodjenja" "Dunavska"]})
 
 (deftest test-create-user
@@ -108,3 +109,25 @@
                        :content "Closed road in Svetozara Ćorovića."}]
       (mc/insert @db "news" closed-road)
       (is (empty? (search-news "Svetozara Miletića"))))))
+
+; Events
+
+(def email-sent {:message "Email sent"
+                 :description "email='john@example.com' streets='Some street'"})
+
+(deftest test-create-event
+  (create-event email-sent)
+  (let [saved-event (mc/find-one-as-map @db "events" {:message (:message email-sent)})]
+    (is (= (:description saved-event) (:description email-sent)))
+    (is (not (nil? (:created-at saved-event))))))
+
+(deftest test-find-all-events
+  (create-event email-sent)
+  (let [events (find-all-events)]
+    (is (= 1 (count events)))))
+
+(deftest test-find-events-for-yesterday
+  (create-event email-sent)
+  (let [events (find-events-for-yesterday)]
+    (is (= 1 (count events)))
+    (is (= (:message email-sent) (:message (first events))))))
