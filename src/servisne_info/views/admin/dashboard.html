@@ -46,6 +46,28 @@
         {% endfor %}
       </tbody>
     </table>
+
+    <h2>Events</h2>
+
+    <table id="events" class="table">
+      <thead>
+        <tr>
+          <th>Message</th>
+          <th>Data</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td>{{event.message}}</td>
+          <td>{{event.data}}</td>
+          <td>{{event.created-at|date:"yyyy-MM-dd"}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 

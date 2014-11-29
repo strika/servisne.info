@@ -21,5 +21,8 @@
         (within [:#users]
           (has (regex? #"(?s).*john@example.com.*")))
         (within [:#news]
-          (has (regex? #"(?s).*Power outage.*"))))))
+          (has (regex? #"(?s).*Power outage.*")))
+        (within [:#events]
+          (has (regex? #"(?s).*User created.*"))
+          (has (regex? #"(?s).*john@example.com.*"))))))
 
