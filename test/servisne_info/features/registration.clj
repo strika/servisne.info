@@ -4,7 +4,7 @@
         kerodon.core
         kerodon.test
         servisne-info.test-utils)
-  (:require [servisne-info.handler :refer [app init]]
+  (:require [servisne-info.handler :refer [app]]
             [servisne-info.repository :as repo]))
 
 (use-fixtures :once init-database)
@@ -42,3 +42,4 @@
       (press "Prijavi me")
       (within [:h2]
         (has (text? "Prijava nije uspela!")))))
+
