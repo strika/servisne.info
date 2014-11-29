@@ -6,7 +6,7 @@
 (defn- format-event [event]
   {:message (:message event)
    :created-at (:created-at event)
-   :data (format-data (dissoc event :id :message :created-at))})
+   :data (format-data (dissoc event :_id :message :created-at))})
 
 (defn dashboard []
   (let [events (map format-event (repo/find-latest-events))]
