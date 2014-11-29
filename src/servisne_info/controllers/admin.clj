@@ -9,7 +9,7 @@
    :data (format-data (dissoc event :id :message :created-at))})
 
 (defn dashboard []
-  (let [events (map format-event (repo/find-all-events))]
+  (let [events (map format-event (repo/find-latest-events))]
     (layout/render
       "admin/dashboard.html"
       {:users (repo/find-all-users)
