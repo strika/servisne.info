@@ -101,6 +101,12 @@
 (defn find-all-events []
   (map #(from-db-object % true) (mc/find @db "events")))
 
+(defn find-latest-events []
+  (mq/with-collection @db "events"
+    (mq/find {})
+    (mq/sort (array-map :created-at -1))
+    (mq/limit 100)))
+
 (defn find-events-for-yesterday []
   (let [today (t/plus (t/now) (t/minutes 60))
         yesterday (t/minus today (t/days 1))]

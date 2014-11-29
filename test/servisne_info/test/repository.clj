@@ -126,6 +126,11 @@
   (let [events (find-all-events)]
     (is (= 1 (count events)))))
 
+(deftest test-find-latest-events
+  (create-event email-sent)
+  (let [events (find-latest-events)]
+    (is (= 1 (count events)))))
+
 (deftest test-find-events-for-yesterday
   (create-event email-sent)
   (let [events (find-events-for-yesterday)]
