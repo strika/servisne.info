@@ -1,5 +1,5 @@
 {% block content %}
-Dobar dan,
+Zdravo,
 
 Pronašli smo vesti koje vas možda zanimaju:
 
@@ -8,13 +8,11 @@ Pronašli smo vesti koje vas možda zanimaju:
 {% endfor %}
 
 Jesu li vam ove vesti korisne? Proširite glas! Preporučite nas prijateljima,
-pozanicima, užoj i široj familiji. I obavezno nas pomenite na Twitteru i
+poznanicima, užoj i široj familiji. I obavezno nas pomenite na Twitteru i
 Facebooku!
 
 Ako imate predlog ili ideju za unapređenje servisa samo odgovorite na ovaj mejl.
 Čitamo i odgovaramo na svaki mejl!
 
-Pozdrav,
-
-servisne.info
+Vaše servisne.info
 {% endblock  %}
