@@ -7,10 +7,12 @@ Pronašli smo vesti koje vas možda zanimaju:
 - {{link}}
 {% endfor %}
 
-Ako su vam ove vesti korisne, pomozite nam da se glas proširi.
-Bićemo vam zahvalni ako nas pomenete na Twitteru ili Facebooku.
+Jesu li vam ove vesti korisne? Proširite glas! Preporučite nas prijateljima,
+pozanicima, užoj i široj familiji. I obavezno nas pomenite na Twitteru i
+Facebooku!
 
-Ako imate predlog, ideju, žalbu ili molbu, slobodno odgovorite na ovaj mejl.
+Ako imate predlog ili ideju za unapređenje servisa samo odgovorite na ovaj mejl.
+Čitamo i odgovaramo na svaki mejl!
 
 Pozdrav,
 
