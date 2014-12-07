@@ -23,9 +23,3 @@
               "Servisne informacije"
               (email/render "new_links.txt"
                             {:links (map :url news)})))
-
-(defn send-test-email []
-  (send-email "nebojsa.stricevic@gmail.com"
-              "Test poruka"
-              (email/render "new_links.txt"
-                            {:links ["http://servisne.info/" "http://servisne.info/about"]})))
