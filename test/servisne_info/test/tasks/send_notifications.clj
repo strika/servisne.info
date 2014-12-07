@@ -1,11 +1,10 @@
 (ns servisne-info.test.tasks.send-notifications
-  (:use clojure.test
-        servisne-info.test-utils
-        servisne-info.notifications
-        servisne-info.tasks.send-notifications)
-  (:require [monger.collection :as mc]
-            [environ.core :refer [env]]
-            [servisne-info.repository :as repo]))
+  (:require
+    [clojure.test :refer :all]
+    [servisne-info.notifications :refer :all]
+    [servisne-info.repository :as repo]
+    [servisne-info.tasks.send-notifications :refer :all]
+    [servisne-info.test-utils :refer :all]))
 
 (use-fixtures :once (compose-fixtures stub-emails init-database))
 (use-fixtures :each (compose-fixtures clean-emails clean-database))

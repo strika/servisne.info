@@ -1,6 +1,7 @@
 (ns servisne-info.notifications
   (:use postal.core)
-  (:require [environ.core :refer [env]]
+  (:require [clj-time.core :as t]
+            [environ.core :refer [env]]
             [servisne-info.event :as event]
             [servisne-info.views.email :as email]))
 
@@ -23,3 +24,10 @@
               "Servisne informacije"
               (email/render "new_links.txt"
                             {:links (map :url news)})))
+
+(defn send-daily-report-email [events]
+  (send-email (env :email-host)
+              "[servisne.info] Dnevni izveštaj"
+              (email/render "daily_report.txt"
+                            {:date (t/now)
+                             :events events})))
