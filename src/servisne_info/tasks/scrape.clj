@@ -32,4 +32,5 @@
 (def scrape-task
   (deftask "scrape"
     (let [saved-links-count (save-links)]
-      (event/record "Scraping new links" {:count saved-links-count}))))
+      (if (> saved-links-count 0)
+        (event/record "Scraping new links" {:count saved-links-count})))))
