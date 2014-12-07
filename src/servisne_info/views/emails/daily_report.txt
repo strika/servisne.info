@@ -1,0 +1,10 @@
+{% block content %}
+Izveštaj za {{date}}
+-------------------------
+
+{% for event in events %}
+- {{event.message}}, {{event.data}}
+{% endfor %}
+
+servisne.info
+{% endblock  %}
