@@ -26,7 +26,7 @@
                             {:links (map :url news)})))
 
 (defn send-daily-report-email [events]
-  (send-email (env :email-host)
+  (send-email (env :email-user)
               "[servisne.info] Dnevni izveštaj"
               (email/render "daily_report.txt"
                             {:date (t/now)
