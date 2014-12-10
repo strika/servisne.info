@@ -23,4 +23,4 @@
   (do
     (add-periodic-task scrape-task)
     (add-periodic-task send-notifications-task)
-    (add-periodic-task send-daily-report-task (* default-period 12))))
+    (add-periodic-task send-daily-report-task (* default-period 24))))
