@@ -28,6 +28,9 @@
   (reset! sent-emails [])
   (t))
 
+(defn assert-email-sent [session]
+  (is (= 1 (count @sent-emails))))
+
 (defn assert-event-recorded
   ([] (is (= 1 (count (repo/find-all-events)))))
   ([session]

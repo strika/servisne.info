@@ -31,3 +31,9 @@
               (email/render "daily_report.txt"
                             {:date (t/now)
                              :events events})))
+
+(defn send-registration-confirmation-email [user]
+  (send-email (:email user)
+              "Uspešno ste se prijavili na servisne.info"
+              (email/render "registration_confirmation.txt"
+                            {:user user})))
