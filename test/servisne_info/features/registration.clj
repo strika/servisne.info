@@ -7,8 +7,8 @@
   (:require [servisne-info.handler :refer [app]]
             [servisne-info.repository :as repo]))
 
-(use-fixtures :once init-database)
-(use-fixtures :each clean-database)
+(use-fixtures :once (compose-fixtures stub-emails init-database))
+(use-fixtures :each (compose-fixtures clean-emails clean-database))
 
 (defn assert-user-exists [_ user]
   (let [email (:email user)
@@ -34,7 +34,8 @@
         (within [:.streets]
           (has (text? "Mileticeva, Bulevar Oslobodjenja")))
         (assert-user-exists user)
-        (assert-event-recorded))))
+        (assert-event-recorded)
+        (assert-email-sent))))
 
 (deftest registration-without-email
   (-> (session app)

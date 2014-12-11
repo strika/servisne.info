@@ -2,6 +2,7 @@
   (:require [clojure.string :refer [join trim split]]
             [noir.response :as response]
             [servisne-info.event :as event]
+            [servisne-info.notifications :as notifications]
             [servisne-info.repository :as repo]
             [servisne-info.views.layout :as layout]))
 
@@ -23,8 +24,9 @@
   (let [streets-seq (split-streets streets)]
     (if (repo/find-user email)
       (repo/update-user email {:streets streets-seq})
-      (do
-        (repo/create-user {:email email :streets streets-seq})
+      (let [user {:email email :streets streets-seq}]
+        (repo/create-user user)
+        (notifications/send-registration-confirmation-email user)
         (event/record "User signed up" {:email email})))))
 
 (defn users-create [email streets]
