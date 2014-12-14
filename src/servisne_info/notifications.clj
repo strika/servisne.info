@@ -1,6 +1,7 @@
 (ns servisne-info.notifications
   (:use postal.core)
-  (:require [clj-time.core :as t]
+  (:require [clojure.string :as s]
+            [clj-time.core :as t]
             [environ.core :refer [env]]
             [servisne-info.event :as event]
             [servisne-info.views.email :as email]))
@@ -32,8 +33,8 @@
                             {:date (t/now)
                              :events events})))
 
-(defn send-registration-confirmation-email [user]
-  (send-email (:email user)
+(defn send-registration-confirmation-email [{:keys [email streets]}]
+  (send-email email
               "Uspešno ste se prijavili na servisne.info"
               (email/render "registration_confirmation.txt"
-                            {:user user})))
+                            {:streets (s/join ", " streets)})))
