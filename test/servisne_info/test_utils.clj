@@ -28,8 +28,18 @@
   (reset! sent-emails [])
   (t))
 
-(defn assert-email-sent [session]
-  (is (= 1 (count @sent-emails))))
+(defn assert-email-sent
+  ([session]
+   (assert-email-sent session nil))
+  ([session {:keys [to subject body]}]
+   (let [email (first @sent-emails)]
+     (is (= 1 (count @sent-emails)))
+     (if to
+       (is (= to (:to email))))
+     (if subject
+       (is (= subject (:subject email))))
+     (if body
+       (is (.contains (:body email) body))))))
 
 (defn assert-event-recorded
   ([] (is (= 1 (count (repo/find-all-events)))))

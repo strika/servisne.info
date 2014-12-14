@@ -21,21 +21,22 @@
   (is (= users-count (count (repo/find-all-users)))))
 
 (deftest registration
-  (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}]
+  (let [user {:email "john@example.com" :streets ["Mileticeva" "Bulevar Oslobodjenja"]}
+        streets-str (join ", " (:streets user))]
     (-> (session app)
         (visit "/")
         (fill-in :#email (:email user))
-        (fill-in :#streets (join ", " (:streets user)))
+        (fill-in :#streets streets-str)
         (press "Prijavi me")
         (within [:h2]
           (has (text? "Uspešno ste se prijavili!")))
         (within [:.email]
           (has (text? "john@example.com")))
         (within [:.streets]
-          (has (text? "Mileticeva, Bulevar Oslobodjenja")))
+          (has (text? streets-str)))
         (assert-user-exists user)
         (assert-event-recorded)
-        (assert-email-sent))))
+        (assert-email-sent {:body streets-str}))))
 
 (deftest registration-without-email
   (-> (session app)
