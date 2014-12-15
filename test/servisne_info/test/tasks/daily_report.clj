@@ -9,9 +9,14 @@
 (use-fixtures :each (compose-fixtures clean-emails clean-database))
 
 (def email-sent {:message "Email sent"
-                 :description "email='john@example.com' streets='Some street'"})
+                 :email "john@example.com"
+                 :streets "Bulevar"})
 
 (deftest send-daily-report-test
   (repo/create-event email-sent)
   (send-daily-report)
-  (is (= 1 (count @sent-emails))))
+  (let [email (first @sent-emails)]
+    (is email)
+    (is (.contains (:body email) (:message email-sent)))
+    (is (.contains (:body email) (:email email-sent)))
+    (is (.contains (:body email) (:streets email-sent)))))
