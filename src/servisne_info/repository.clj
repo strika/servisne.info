@@ -105,7 +105,7 @@
   (mq/with-collection @db "events"
     (mq/find {})
     (mq/sort (array-map :created-at -1))
-    (mq/limit 100)))
+    (mq/limit 30)))
 
 (defn find-events-for-yesterday []
   (let [today (t/plus (t/now) (t/minutes 60))
