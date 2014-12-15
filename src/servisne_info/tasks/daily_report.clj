@@ -5,7 +5,7 @@
             [servisne-info.tasks.task-definition :refer [deftask]]))
 
 (defn- format-event-data [event]
-  (l/format-data (dissoc event :_id)))
+  (l/format-data (dissoc event :_id :created-at)))
 
 (defn send-daily-report []
   (let [events (repo/find-events-for-yesterday)]
