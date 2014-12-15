@@ -9,8 +9,8 @@
 (defn- split-streets [streets]
   (map trim (split streets #",")))
 
-(defn users-delete []
-  (layout/render "users/delete.html"))
+(defn users-delete [email]
+  (layout/render "users/delete.html" {:email email}))
 
 (defn users-destroy [email]
   (let [user (repo/find-user email)]

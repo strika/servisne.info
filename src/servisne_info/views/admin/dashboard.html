@@ -11,15 +11,17 @@
           <th>Email</th>
           <th>Streets</th>
           <th>Created At</th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
         {% for user in users %}
-        <tr>
+        <tr class="user">
           <td>{{user.email}}</td>
           <td>{{user.streets}}</td>
           <td>{{user.created-at|date:"yyyy-MM-dd"}}</td>
+          <td><a href="{{servlet-context}}/users/delete?email={{user.email}}" class="btn btn-xs btn-default">Unsubscribe</a></td>
         </tr>
         {% endfor %}
       </tbody>
