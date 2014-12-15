@@ -3,7 +3,7 @@ Izveštaj za {{date}}
 -------------------------
 
 {% for event in events %}
-- {{event}}
+- {{event|safe}}
 {% endfor %}
 
 servisne.info

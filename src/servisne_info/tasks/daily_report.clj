@@ -4,9 +4,12 @@
             [servisne-info.repository :as repo]
             [servisne-info.tasks.task-definition :refer [deftask]]))
 
+(defn- format-event-data [event]
+  (l/format-data (dissoc event :_id)))
+
 (defn send-daily-report []
   (let [events (repo/find-events-for-yesterday)]
-    (send-daily-report-email (map l/format-data events))))
+    (send-daily-report-email (map format-event-data events))))
 
 (def send-daily-report-task
   (deftask "send daily report"
