@@ -2,6 +2,9 @@
 Izveštaj za {{date}}
 -------------------------
 
+Broj korisnika: {{users-count}}
+
+Događaji:
 {% for event in events %}
 - {{event|safe}}
 {% endfor %}

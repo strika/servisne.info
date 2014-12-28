@@ -8,8 +8,10 @@
   (l/format-data (dissoc event :_id :created-at)))
 
 (defn send-daily-report []
-  (let [events (repo/find-events-for-yesterday)]
-    (send-daily-report-email (map format-event-data events))))
+  (let [users-count (repo/count-users)
+        events (repo/find-events-for-yesterday)
+        formated-events (map format-event-data events)]
+    (send-daily-report-email users-count formated-events)))
 
 (def send-daily-report-task
   (deftask "send daily report"
