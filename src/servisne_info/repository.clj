@@ -53,6 +53,9 @@
 (defn remove-users []
   (mc/remove @db "users"))
 
+(defn count-users []
+  (mc/count @db "users"))
+
 ; News
 (def news-attributes [:url :title :content :sent :created-at])
 
