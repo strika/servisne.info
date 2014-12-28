@@ -8,10 +8,10 @@
 
     <p>servisne.info vam šalju korisne servisne informacije na mejl za ulice koje odaberete.</p>
     
-    <p>Unesite <strong>ulice u Novom Sadu</strong> koje vas interesuju, odvojene zarezom.
-    Preporučujemo Vam da unesete naziv ulice u svim oblicima koji se koriste u redovnoj upotrebi.
-    Na primer "Svetozara Miletića" i "Miletićeva".
-    Nije neophodno koristiti latinične karaktere.</p>
+    <p>Unesite <strong>ulice i delove grada u Novom Sadu</strong> koje vas
+    interesuju, odvojene zarezom. Preporučujemo Vam da unesete naziv ulice u
+    svim oblicima koji se koriste u redovnoj upotrebi.  Na primer "Svetozara
+    Miletića" i "Miletićeva". Nije neophodno koristiti latinične karaktere.</p>
 
     <form action="{{servlet-context}}/users/create" method="post" role="form">
       {% csrf-token %}
@@ -24,7 +24,7 @@
       <div class="form-group">
         <label for="streets">Ulice:</label>
         <textarea id="streets" name="streets" class="form-control" rows="3"
-          placeholder="Bulevar oslobođenja, Miletićeva, Svetozara Miletića"></textarea>
+          placeholder="Bulevar oslobođenja, Miletićeva, Svetozara Miletića, Grbavica"></textarea>
       </div>
 
       <input type="submit" class="btn btn-primary btn-lg" value="Prijavi me">
