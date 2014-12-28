@@ -10,6 +10,7 @@
 ; Users
 
 (def user {:email "john@example.com" :streets ["Bulevar oslobodjenja" "Dunavska"]})
+(def user-2 {:email "mike@example.com" :streets ["Cara Lazara"]})
 
 (deftest test-create-user
   (create-user user)
@@ -30,15 +31,14 @@
     (is (= (:streets saved-user) (:streets user)))))
 
 (deftest test-find-all-users
-  (let [user-2 {:email "mike@example.com" :streets ["Cara Lazara"]}]
-    (mc/insert @db "users" user)
-    (mc/insert @db "users" user-2)
-    (let [users (find-all-users)
-          first-user (first users)
-          second-user (second users)]
-      (is (= (count users) 2))
-      (is (= (:email first-user) (:email user)))
-      (is (= (:email second-user) (:email user-2))))))
+  (mc/insert @db "users" user)
+  (mc/insert @db "users" user-2)
+  (let [users (find-all-users)
+        first-user (first users)
+        second-user (second users)]
+    (is (= (count users) 2))
+    (is (= (:email first-user) (:email user)))
+    (is (= (:email second-user) (:email user-2)))))
 
 (deftest test-update-user
   (let [new-attributes {:streets ["Cara Lazara"]}]
@@ -46,6 +46,11 @@
     (update-user (:email user) new-attributes)
     (let [saved-user (mc/find-one-as-map @db "users" {:email (:email user)})]
       (is (= (:streets saved-user) (:streets new-attributes))))))
+
+(deftest test-count-users
+  (create-user user)
+  (create-user user-2)
+  (is (= 2 (count-users))))
 
 ; News
 (def power-outage {:title "Power outage"

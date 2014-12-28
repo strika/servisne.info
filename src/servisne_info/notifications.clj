@@ -26,11 +26,12 @@
               (email/render "new_links.txt"
                             {:links (map :url news)})))
 
-(defn send-daily-report-email [events]
+(defn send-daily-report-email [users-count events]
   (send-email (env :email-user)
               "[servisne.info] Dnevni izveštaj"
               (email/render "daily_report.txt"
                             {:date (t/now)
+                             :users-count users-count
                              :events events})))
 
 (defn send-registration-confirmation-email [{:keys [email streets]}]

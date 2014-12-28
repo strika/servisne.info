@@ -12,11 +12,17 @@
                  :email "john@example.com"
                  :streets "Bulevar"})
 
+(def user {:email "john@example.com" :streets ["Bulevar oslobodjenja"]})
+(def user-2 {:email "mike@example.com" :streets ["Cara Lazara"]})
+
 (deftest send-daily-report-test
+  (repo/create-user user)
+  (repo/create-user user-2)
   (repo/create-event email-sent)
   (send-daily-report)
   (let [email (first @sent-emails)]
     (is email)
+    (is (.contains (:body email) "Broj korisnika: 2"))
     (is (.contains (:body email) (:message email-sent)))
     (is (.contains (:body email) (:email email-sent)))
     (is (.contains (:body email) (:streets email-sent)))))
