@@ -20,5 +20,5 @@
         (visit "/")
         (within [:h2]
           (has (text? "Budite spremni za nestanak struje,  \n    vode ili grejanja")))
-        (within [:div.latest-info :li]
+        (within [:div.latest-info :li :a]
           (has (text? (:title power-outage)))))))

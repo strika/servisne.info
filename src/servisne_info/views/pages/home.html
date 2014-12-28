@@ -39,7 +39,10 @@
 
       <ul>
         {% for link in info-links %}
-        <li><a href="{{link.url}}">{{link.title}}</a></li>
+        <li>
+          <a href="{{link.url}}">{{link.title}}</a>
+          <span class="pull-right">{{link.created-at|date:"dd.MM.yyyy."}}</span>
+        </li>
         {% endfor %}
       </ul>
     </div>
