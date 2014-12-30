@@ -1,8 +1,10 @@
 (ns servisne-info.test-utils
   (:require [clojure.test :refer :all]
+            [clj-webdriver.taxi :refer :all]
             [servisne-info.repository :as repo]
             [servisne-info.handler :refer [init]]
-            [servisne-info.notifications :as notifications]))
+            [servisne-info.notifications :as notifications]
+            [servisne-info.webapp :as app]))
 
 (def sent-emails (atom []))
 
@@ -46,3 +48,23 @@
   ([session]
    (assert-event-recorded)
    session))
+
+(def ^:private browser-count (atom 0))
+
+(defn browser-up
+  "Start up a browser if it's not already started."
+  []
+  (when (= 1 (swap! browser-count inc))
+    (set-driver! {:browser :firefox})
+    (implicit-wait 60000)))
+
+(defn browser-down
+  "If this is the last request, shut the browser down."
+  [& {:keys [force] :or {force false}}]
+  (when (zero? (swap! browser-count (if force (constantly 0) dec)))
+    (quit)))
+
+(defn start-server [f]
+  (app/start-server "0.0.0.0" 8181)
+  (f)
+  (app/stop-server))

@@ -12,9 +12,13 @@
     (handler/destroy)
     (reset! server nil)))
 
+(defn start-server [ip port]
+  (reset! server (run-server handler/app {:ip ip :port port}))
+  (.addShutdownHook (Runtime/getRuntime) (Thread. stop-server))
+  (handler/init)
+  @server)
+
 (defn -main [& args]
   (let [port (Integer/parseInt (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_PORT" "8080"))
         ip (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_IP" "0.0.0.0")]
-    (reset! server (run-server handler/app {:ip ip :port port}))
-    (.addShutdownHook (Runtime/getRuntime) (Thread. stop-server))
-    (handler/init)))
+    (start-server ip port)))

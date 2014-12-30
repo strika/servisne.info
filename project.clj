@@ -2,6 +2,7 @@
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [org.clojure/core.cache "0.6.4"]
                  [clj-time "0.8.0"]
                  [com.draines/postal "1.11.3"]
                  [com.novemberain/monger "2.0.0"]
@@ -27,12 +28,15 @@
          :init    servisne-info.handler/init
          :destroy servisne-info.handler/destroy}
   :main servisne-info.webapp
+  :update :always
+  :checksum :fail
   :profiles
   {:uberjar {:aot :all}
    :production {:ring {:open-browser? false
                        :stacktraces?  false
                        :auto-reload?  false}}
-   :dev {:dependencies [[ring-mock "0.1.5"]
+   :dev {:dependencies [[clj-webdriver "0.6.1"]
+                        [ring-mock "0.1.5"]
                         [ring/ring-devel "1.3.2"]]
          :env {:selmer-dev true}}}
   :min-lein-version "2.0.0"
