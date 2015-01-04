@@ -11,15 +11,13 @@
                  [enlive "1.1.5"]
                  [environ "1.0.0"]
                  [http-kit "2.1.19"]
-                 [kerodon "0.5.0"]
                  [lib-noir "0.9.4"]
                  [org.clojure/tools.nrepl "0.2.6"]
                  [overtone/at-at "1.2.0"]
                  [prone "0.6.0"]
+                 [raven-clj "1.2.0"]
                  [ring-server "0.3.1"]
-                 [selmer "0.7.5"]
-                 [raven-clj "1.2.0"]]
-
+                 [selmer "0.7.5"]]
   :repl-options {:init-ns servisne-info.repl}
   :plugins [[lein-ring "0.8.10"]
             [lein-environ "0.4.0"]]
@@ -32,7 +30,8 @@
    :production {:ring {:open-browser? false
                        :stacktraces?  false
                        :auto-reload?  false}}
-   :dev {:dependencies [[ring-mock "0.1.5"]
+   :dev {:dependencies [[kerodon "0.5.0"]
+                        [ring-mock "0.1.5"]
                         [ring/ring-devel "1.3.2"]]
          :env {:selmer-dev true}}}
   :min-lein-version "2.0.0"
