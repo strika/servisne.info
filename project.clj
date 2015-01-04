@@ -11,7 +11,7 @@
                  [enlive "1.1.5"]
                  [environ "1.0.0"]
                  [http-kit "2.1.19"]
-                 [lib-noir "0.9.4"]
+                 [lib-noir "0.9.5"]
                  [org.clojure/tools.nrepl "0.2.6"]
                  [overtone/at-at "1.2.0"]
                  [prone "0.6.0"]
