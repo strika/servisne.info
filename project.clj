@@ -14,7 +14,7 @@
                  [lib-noir "0.9.5"]
                  [org.clojure/tools.nrepl "0.2.6"]
                  [overtone/at-at "1.2.0"]
-                 [prone "0.6.0"]
+                 [prone "0.8.0"]
                  [raven-clj "1.2.0"]
                  [ring-server "0.3.1"]
                  [selmer "0.7.5"]]
