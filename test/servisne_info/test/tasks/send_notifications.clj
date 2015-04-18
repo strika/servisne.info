@@ -17,17 +17,22 @@
 (def closed-road {:title "Closed road"
                   :url "http://example.com/closed_road"
                   :content "Closed road somewhere"})
+(def city-wide-water-shortage
+  {:title "Slabiji pritisak vode u celom Novom Sadu"
+   :url "http://example.com/city_wide_water_shortage"
+   :content "Zbog radova Elektrovojvodine na izvorištu Ratno ostrvo, danas će,
+            od 7 časova biti snižen pritisak u vodovodnoj mreži u celom gradu
+            i prigradskim naseljima."})
 
 (deftest find-news-for-user-test
   (repo/create-user user)
-  (repo/create-news power-outage)
-  (repo/create-news closed-road)
-  (let [result (find-news-for-user user)
-        result-user (first result)
-        result-news (second result)]
+  (doall (map repo/create-news
+              [power-outage closed-road city-wide-water-shortage]))
+  (let [[result-user result-news] (find-news-for-user user)]
     (is (= result-user user))
-    (is (not-empty result-news))
-    (is (= (:url (first result-news)) (:url power-outage)))))
+    (is (= 2 (count result-news)))
+    (is (= (:url (first result-news)) (:url power-outage)))
+    (is (= (:url (last result-news)) (:url city-wide-water-shortage)))))
 
 (deftest similar-street-name-test
   (let [user {:email "john@example.com"
