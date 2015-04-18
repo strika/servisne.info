@@ -5,9 +5,13 @@
             [servisne-info.repository :as repo]))
 
 ; Private
+(defn find-news-for-term [term]
+  (flatten (map #(repo/search-news %) term)))
+
 (defn find-news-for-user [{:keys [email streets] :as user}]
-  (let [news (flatten (map #(repo/search-news %) streets))
-        unsent-news (filter #(nil? (:sent %)) news)]
+  (let [street-news (find-news-for-term streets)
+        city-wide-news (find-news-for-term ["u celom gradu"])
+        unsent-news (filter #(nil? (:sent %)) (concat street-news city-wide-news))]
     (l/info "Finding news for user" {:user email :streets streets :news_count (count unsent-news)})
     [user unsent-news]))
 
