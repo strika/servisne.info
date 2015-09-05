@@ -4,7 +4,7 @@ html {
 
 body {
   background: url(/images/window-background.jpg) no-repeat #ececec;
-  background-position: 100%;
+  background-size: cover;
   padding: 0;
   font-family: 'Fira Sans', sans-serif;
   color: #878787;
