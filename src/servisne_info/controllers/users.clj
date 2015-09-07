@@ -4,7 +4,8 @@
             [servisne-info.event :as event]
             [servisne-info.notifications :as notifications]
             [servisne-info.repository :as repo]
-            [servisne-info.views.layout :as layout]))
+            [servisne-info.views.layout :as layout]
+            [servisne-info.validations :refer [user-valid?]]))
 
 (defn- split-streets [streets]
   (map trim (split streets #",")))
@@ -25,9 +26,11 @@
     (if (repo/find-user email)
       (repo/update-user email {:streets streets-seq})
       (let [user {:email email :streets streets-seq}]
-        (repo/create-user user)
-        (notifications/send-registration-confirmation-email user)
-        (event/record "User signed up" {:email email})))))
+        (if (user-valid? user)
+          (do
+            (repo/create-user user)
+            (notifications/send-registration-confirmation-email user)
+            (event/record "User signed up" {:email email})))))))
 
 (defn users-create [email streets]
   (if email
