@@ -3,7 +3,7 @@ Zdravo,
 
 Uspešno ste se prijavili na servisne.info!
 
-Poslaćemo Vam poruku ako uočimo novi servisnu informaciju za ulice {{streets}}.
+Poslaćemo Vam poruku ako uočimo novu servisnu informaciju za ulice {{streets}}.
 
 Pozdrav,
 
