@@ -23,16 +23,25 @@
    :content "Zbog radova Elektrovojvodine na izvorištu Ratno ostrvo, danas će,
             od 7 časova biti snižen pritisak u vodovodnoj mreži u celom gradu
             i prigradskim naseljima."})
+(def novi-sad-wide-water-shortage
+  {:title "Slab pritisak vode u celom Novom Sadu "
+   :url "http://example.com/novi_sad_wide_water_shortage"
+   :content "U celom Novom Sadu danas, 27. novembra, biće smanjen pritisak
+            vode zbog radova u Fabrici vode."})
+
+(def all-news [power-outage closed-road
+               city-wide-water-shortage
+               novi-sad-wide-water-shortage])
 
 (deftest find-news-for-user-test
   (repo/create-user user)
-  (doall (map repo/create-news
-              [power-outage closed-road city-wide-water-shortage]))
+  (doall (map repo/create-news all-news))
   (let [[result-user result-news] (find-news-for-user user)]
     (is (= result-user user))
-    (is (= 2 (count result-news)))
-    (is (= (:url (first result-news)) (:url power-outage)))
-    (is (= (:url (last result-news)) (:url city-wide-water-shortage)))))
+    (is (= 3 (count result-news)))
+    (is (= (:url (nth result-news 0)) (:url power-outage)))
+    (is (= (:url (nth result-news 1)) (:url city-wide-water-shortage)))
+    (is (= (:url (nth result-news 2)) (:url novi-sad-wide-water-shortage)))))
 
 (deftest similar-street-name-test
   (let [user {:email "john@example.com"

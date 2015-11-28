@@ -4,13 +4,20 @@
   (:require [servisne-info.logging :as l]
             [servisne-info.repository :as repo]))
 
+(def city-wide-search-terms ["u celom gradu"
+                             "u celom Novom Sadu"
+                             "u celoj bačkoj"
+                             "ceo grad"
+                             "ceo Novi Sad"
+                             "cela bačka"])
+
 ; Private
 (defn find-news-for-term [term]
   (flatten (map #(repo/search-news %) term)))
 
 (defn find-news-for-user [{:keys [email streets] :as user}]
   (let [street-news (find-news-for-term streets)
-        city-wide-news (find-news-for-term ["u celom gradu"])
+        city-wide-news (find-news-for-term city-wide-search-terms)
         unsent-news (filter #(nil? (:sent %)) (concat street-news city-wide-news))]
     (l/info "Finding news for user" {:user email :streets streets :news_count (count unsent-news)})
     [user unsent-news]))
