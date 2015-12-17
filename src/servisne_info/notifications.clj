@@ -6,7 +6,7 @@
             [servisne-info.event :as event]
             [servisne-info.views.email :as email]))
 
-(def default-from "info@servisne.info")
+(def default-from "Servisne Informacije <info@servisne.info>")
 
 (defn send-email
   [to subject body]
@@ -22,7 +22,7 @@
 (defn send-news-email [user news]
   (event/record "Sending news email" {:user (:email user)})
   (send-email (:email user)
-              "Servisne informacije"
+              "[servisne.info] Nove Servisne Informacije"
               (email/render "new_links.txt"
                             {:links (map :url news)})))
 
