@@ -8,19 +8,19 @@
 
 (deftest info-links-test
   (let [links (info-links info-site links-page-fixture)]
-    (is (= (count links) 10))
+    (is (= (count links) 15))
     (is (= (first links)
-           {:title "Isključenja struje za 20. januar"
-            :url "http://www.021.rs/Novi-Sad/Servisne-informacije/Iskljucenja-struje-za-20-januar-2.html"}))
+           {:title "Deo Futoškog puta i Subotičke ulice  u ponedeljak bez vode"
+            :url "http://www.021.rs/story/6/126530/Deo-Futokog-puta-i-Subotike-ulice-u-ponedeljak-bez-vode.html"}))
     (is (= (last links)
-           {:title "Od srede ponovo đački polasci"
-            :url "http://www.021.rs/Novi-Sad/Servisne-informacije/Od-srede-ponovo-dacki-polasci.html"}))))
+           {:title "Vanredni polasci autobusa GSP-a za doček Srpske Nove godine"
+            :url "http://www.021.rs/story/6/126291/Vanredni-polasci-autobusa-GSP-a-za-doek-Srpske-Nove-godine.html"}))))
 
 (deftest info-page-test
   (let [page (info-page info-page-fixture)]
-    (is (= (:title page) "Proširena Detelinarska pijaca"))
-    (is (.startsWith (:content page) "Novoizgrađeni deo Detelinarske pijace"))))
+    (is (= (:title page) "Isključenja struje za 11. januar"))
+    (is (.startsWith (:content page) "Isključenja struje za 11. januar"))))
 
 (deftest info-page-content-test
   (let [content (info-page-content info-page-fixture)]
-    (is (.startsWith content "Novoizgrađeni deo Detelinarske pijace"))))
+    (is (.startsWith content "Isključenja struje za 11. januar"))))

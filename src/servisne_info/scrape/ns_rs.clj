@@ -9,17 +9,15 @@
   {:url "http://www.021.rs"
    :links-path "/menu/index/6"})
 
-; Private
-
-(defn- info-page-title [html]
-  (s/trim (first (:content (first (en/select html [:h1.contentheading]))))))
-
 ; Public
+
+(defn info-page-title [html]
+  (s/trim (first (:content (first (en/select html [:.story :h1]))))))
 
 (defn info-page-content [html]
   (s/join ""
           (map s/trim
-               (en/select html [:div#content en/text-node]))))
+               (en/select html [:div.story en/text-node]))))
 
 (defn info-page [html]
   {:title (info-page-title html)
@@ -28,11 +26,11 @@
 (defn info-links [site html]
   (map
     (fn [a]
-      {:title (s/trim (first (:content a)))
-       :url (path-to-url site (:href (:attrs a)))})
+      {:title (s/trim (first (:content (first (en/select a [:span])))))
+       :url (:href (:attrs a))})
     (en/select
       html
-      [:div.najava :div.leading :h2.contentheading :a])))
+      [:.col-md-8 :.article_title :a])))
 
 (defn links []
   (info-links info-site (info-links-page info-site)))
