@@ -26,7 +26,7 @@
                 latest (first news)]
             (is (= (:title latest) (:title power-outage)))
             (is (= (:url latest) (:url power-outage)))
-            (is (.startsWith (:content latest) "Novoizgrađeni deo Detelinarske pijace"))))
+            (is (.startsWith (:content latest) "Isključenja struje za 11. januar"))))
 
         (testing "when the link was already saved to the database"
           (save-links)
