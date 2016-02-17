@@ -7,7 +7,7 @@
 (def info-page-fixture (load-cassette "info_page"))
 
 (deftest info-links-test
-  (let [links (info-links info-site links-page-fixture)]
+  (let [links (info-links links-page-fixture)]
     (is (= (count links) 15))
     (is (= (first links)
            {:title "Deo Futoškog puta i Subotičke ulice  u ponedeljak bez vode"

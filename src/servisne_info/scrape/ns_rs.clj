@@ -23,7 +23,7 @@
   {:title (info-page-title html)
    :content (info-page-content html)})
 
-(defn info-links [site html]
+(defn info-links [html]
   (map
     (fn [a]
       {:title (s/trim (first (:content (first (en/select a [:span])))))
@@ -33,4 +33,4 @@
       [:.col-md-8 :.article_title :a])))
 
 (defn links []
-  (info-links info-site (info-links-page info-site)))
+  (info-links (info-links-page info-site)))
