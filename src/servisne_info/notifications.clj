@@ -11,7 +11,7 @@
 (defn send-email
   [to subject body]
   (send-message {:host (env :email-host)
-                 :user (env :email-user) 
+                 :user (env :email-user)
                  :pass (env :email-pass)
                  :port 587}
                 {:from default-from
@@ -27,7 +27,7 @@
                             {:links (map :url news)})))
 
 (defn send-daily-report-email [users-count events]
-  (send-email (env :email-user)
+  (send-email (env :admin-email)
               "[servisne.info] Dnevni izveštaj"
               (email/render "daily_report.txt"
                             {:date (t/now)

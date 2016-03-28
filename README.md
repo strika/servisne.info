@@ -18,6 +18,7 @@ Export following environment variables:
 export EMAIL_HOST=smtp.mandrillapp.com
 export EMAIL_USER=user@example.com
 export EMAIL_PASS=myapikey
+export ADMIN_EMAIL=admin@example.com
 ```
 
 ### Deploy to OpenShift
