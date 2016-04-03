@@ -9,3 +9,5 @@ pom.xml
 /.env
 *.log
 .nrepl-port
+/.otto/
+/.ottoid
