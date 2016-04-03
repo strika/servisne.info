@@ -1,0 +1,4 @@
+application {
+  name = "servisne.info"
+  type = "java"
+}
