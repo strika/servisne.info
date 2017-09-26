@@ -19,15 +19,11 @@
 
 ; Database configuration
 (defn db-connect []
-  (let [host     (or (env :openshift-mongodb-db-host) "localhost")
-        port     (Integer/parseInt (or (env :openshift-mongodb-db-port) "27017"))
-        username (or (env :openshift-mongodb-db-username) "")
-        password (or (env :openshift-mongodb-db-password) "")
-        db-name  (or (env :openshift-app-name) (and (= (env :clj-env) "test") "servisne-test") "servisne")]
-    (l/info "Connecting to MongoDB" {:host host :port port :db_name db-name})
-    (reset! connection (mg/connect {:host host :port port}))
-    (reset! db (mg/get-db @connection db-name))
-    (mg/authenticate @db username (.toCharArray password))
+  (l/info "Connecting to MongoDB")
+  (let [uri (or (env :mongodb-uri) "mongodb://127.0.0.1/servisneinfo")
+        connection-and-db (mg/connect-via-uri uri)]
+    (reset! connection (:conn connection-and-db))
+    (reset! db (:db connection-and-db))
     (mc/ensure-index @db "news" (array-map :content "text"))
     (l/info "Connected")))
 
