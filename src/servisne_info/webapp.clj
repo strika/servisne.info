@@ -1,6 +1,7 @@
 (ns servisne-info.webapp
   (:use org.httpkit.server)
-  (:require [servisne-info.handler :as handler]))
+  (:require [environ.core :refer [env]]
+            [servisne-info.handler :as handler]))
 
 (defonce server (atom nil))
 
@@ -12,8 +13,8 @@
     (handler/destroy)
     (reset! server nil)))
 
-(defn -main [& args]
-  (let [port (Integer/parseInt (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_PORT" "8080"))
+(defn -main [& [port]]
+  (let [port (Integer. (or port (env :port) 5000))
         ip (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_IP" "0.0.0.0")]
     (reset! server (run-server handler/app {:ip ip :port port}))
     (.addShutdownHook (Runtime/getRuntime) (Thread. stop-server))
