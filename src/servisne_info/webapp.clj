@@ -14,8 +14,7 @@
     (reset! server nil)))
 
 (defn -main [& [port]]
-  (let [port (Integer. (or port (env :port) 5000))
-        ip (get (System/getenv) "OPENSHIFT_CLOJURE_HTTP_IP" "0.0.0.0")]
-    (reset! server (run-server handler/app {:ip ip :port port}))
+  (let [port (Integer. (or port (env :port) 5000))]
+    (reset! server (run-server handler/app {:port port}))
     (.addShutdownHook (Runtime/getRuntime) (Thread. stop-server))
     (handler/init)))
