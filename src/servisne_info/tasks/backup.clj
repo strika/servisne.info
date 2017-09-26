@@ -11,7 +11,7 @@
 
 (def s3-bucket "servisne.info")
 
-(def users-path (str (env :openshift-data-dir) "/users.json"))
+(def users-path (str (env :data-dir) "/users.json"))
 
 (defn users-backup-name []
   (let [formatter (f/formatters :date-hour)]

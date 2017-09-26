@@ -24,7 +24,7 @@ export MONGODB_URI=uri
 export OPENSHIFT_APP_NAME=admin
 export S3_ACCESS_KEY=key
 export S3_ACCESS_SECRET=secret
-export OPENSHIFT_DATA_DIR=/path
+export DATA_DIR=/path
 export SENTRY_DSN=url
 ```
 
