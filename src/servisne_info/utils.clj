@@ -2,4 +2,4 @@
   (:require [environ.core :refer [env]]))
 
 (defn production? []
-  (env :openshift-app-name))
+  (== (env :app-environment) "production")
