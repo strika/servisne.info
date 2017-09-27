@@ -2,4 +2,4 @@
   (:require [environ.core :refer [env]]))
 
 (defn production? []
-  (== (env :app-environment) "production")
+  (== (env :app-environment) "production"))
