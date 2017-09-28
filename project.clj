@@ -5,7 +5,7 @@
                  [clj-aws-s3 "0.3.10"]
                  [clj-time "0.9.0"]
                  [com.draines/postal "1.11.3"]
-                 [com.novemberain/monger "2.0.1"]
+                 [com.novemberain/monger "2.1.0"]
                  [com.postspectacular/rotor "0.1.0"]
                  [com.taoensso/timbre "3.3.1"]
                  [compojure "1.3.1"]
