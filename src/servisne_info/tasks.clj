@@ -1,6 +1,5 @@
 (ns servisne-info.tasks
   (:require [overtone.at-at :as at-at]
-            [servisne-info.tasks.backup :refer [backup-task]]
             [servisne-info.tasks.daily-report :refer [send-daily-report-task]]
             [servisne-info.tasks.scrape :refer [scrape-task]]
             [servisne-info.tasks.send-notifications :refer [send-notifications-task]]
@@ -22,7 +21,6 @@
 
 (if production?
   (do
-    (add-periodic-task backup-task (* default-period 6))
     (add-periodic-task scrape-task)
     (add-periodic-task send-notifications-task)
     (add-periodic-task send-daily-report-task (* default-period 24))))
