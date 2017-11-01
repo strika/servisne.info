@@ -41,3 +41,9 @@ Update the system:
 ```bash
 sudo apt-get update && sudo apt-get -y upgrade
 ```
+
+Install dependencies:
+
+```bash
+sudo apt-get install git
+```
