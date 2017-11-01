@@ -61,9 +61,8 @@ Clone the project on the server:
 git clone https://github.com/strika/servisne.info.git
 ```
 
-Compile the project:
+You should be able to run the application with:
 
 ```bash
-cd ~/servisne.info
-lein uberjar
+lein with-profile production trampoline ring server
 ```
