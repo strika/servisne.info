@@ -47,3 +47,16 @@ Install dependencies:
 ```bash
 sudo apt-get install git openjdk-8-jre-headless
 ```
+
+Install Leiningen:
+
+```bash
+sudo curl https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein -o /usr/local/bin/lein
+sudo chmod a+x /usr/local/bin/lein
+```
+
+Clone the project on the server:
+
+```bash
+git clone https://github.com/strika/servisne.info.git
+```
