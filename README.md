@@ -60,3 +60,10 @@ Clone the project on the server:
 ```bash
 git clone https://github.com/strika/servisne.info.git
 ```
+
+Compile the project:
+
+```bash
+cd ~/servisne.info
+lein uberjar
+```
