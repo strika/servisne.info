@@ -45,7 +45,7 @@ sudo apt-get update && sudo apt-get -y upgrade
 Install dependencies:
 
 ```bash
-sudo apt-get install git openjdk-8-jre-headless
+sudo apt-get install git openjdk-8-jre-headless nginx supervisor
 ```
 
 Install Leiningen:
