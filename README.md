@@ -45,5 +45,5 @@ sudo apt-get update && sudo apt-get -y upgrade
 Install dependencies:
 
 ```bash
-sudo apt-get install git
+sudo apt-get install git openjdk-8-jre-headless
 ```
