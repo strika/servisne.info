@@ -15,7 +15,6 @@
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
-    (println "PORT: " port)
     (reset! server (run-server handler/app {:port port}))
     (.addShutdownHook (Runtime/getRuntime) (Thread. stop-server))
     (handler/init)))
