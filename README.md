@@ -112,3 +112,9 @@ server {
   }
 }
 ```
+
+Restore data with:
+
+```bash
+mongoimport --db servisneinfo --collection users users-2017-10-09.json
+```
