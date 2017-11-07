@@ -71,7 +71,7 @@ Copy the following configuration go `/etc/supervisor/conf.d/servisneinfo.conf`:
 
 ```bash
 [program:servisneinfo]
-command=lein with-profile production trampoline ring server
+command=lein with-profile production trampoline ring server 8080
 directory=/home/servisneinfo/servisne.info
 user=servisneinfo
 autostart=true
