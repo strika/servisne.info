@@ -80,3 +80,35 @@ startretries=3
 redirect_stderr=true
 stdout_logfile=/home/servisneinfo/servisne.info/log
 ```
+
+Example Nginx configuration:
+
+```bash
+upstream http_backend {
+  server 127.0.0.1:8080;
+  keepalive 32;
+}
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html;
+
+  index index.html index.htm index.nginx-debian.html;
+
+  server_name .servisne.info;
+
+  location / {
+    proxy_pass http://http_backend;
+
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+
+    access_log /home/servisneinfo/servisne.info/log/access.log;
+    error_log /home/servisneinfo/servisne.info/log/error.log;
+  }
+}
+```
