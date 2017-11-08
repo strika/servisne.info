@@ -6,6 +6,12 @@ Visit http://servisne.info to try it out.
 
 ## Environment Variables
 
+Create directory:
+
+```bash
+mkdir ~/data
+```
+
 Export following environment variables:
 
 ```bash
