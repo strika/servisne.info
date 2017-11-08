@@ -12,13 +12,10 @@ Export following environment variables:
 export ADMIN_EMAIL=admin@example.com
 export ADMIN_TOKEN=token123
 export APP_ENVIRONMENT=production
-export DATA_DIR=/path
 export EMAIL_HOST=smtp.mandrillapp.com
 export EMAIL_PASS=myapikey
 export EMAIL_USER=user@example.com
 export MONGODB_URI=uri
-export S3_ACCESS_KEY=key
-export S3_ACCESS_SECRET=secret
 export SENTRY_DSN=url
 ```
 
