@@ -73,6 +73,24 @@ You should be able to run the application with:
 lein with-profile production trampoline ring server
 ```
 
+Example systemd service configuration:
+
+```bash
+[Unit]
+Description=servisne.info server
+
+[Service]
+Type=simple
+User=servisneinfo
+Group=servisneinfo
+WorkingDirectory=/home/servisneinfo/servisne.info
+ExecStart=/bin/bash -lc 'lein with-profile production trampoline ring server 8080'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
 Example Nginx configuration:
 
 ```bash
