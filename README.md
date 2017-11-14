@@ -24,7 +24,7 @@ EMAIL_PASS=myapikey
 EMAIL_USER=user@example.com
 MONGODB_URI=uri
 S3_ACCESS_KEY=key
-S3_ACCESS_SECRET=secret
+S3_SECRET_KEY=secret
 SENTRY_DSN=url
 ```
 
