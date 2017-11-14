@@ -51,7 +51,7 @@ sudo apt-get update && sudo apt-get -y upgrade
 Install dependencies:
 
 ```bash
-sudo apt-get install git openjdk-8-jre-headless nginx supervisor mongodb-server
+sudo apt-get install git openjdk-8-jre-headless nginx mongodb-server
 ```
 
 Install Leiningen:
@@ -71,20 +71,6 @@ You should be able to run the application with:
 
 ```bash
 lein with-profile production trampoline ring server
-```
-
-Copy the following configuration go `/etc/supervisor/conf.d/servisneinfo.conf`:
-
-```bash
-[program:servisneinfo]
-command=lein with-profile production trampoline ring server 8080
-directory=/home/servisneinfo/servisne.info
-user=servisneinfo
-autostart=true
-autorestart=true
-startretries=3
-redirect_stderr=true
-stdout_logfile=/home/servisneinfo/servisne.info/log
 ```
 
 Example Nginx configuration:
