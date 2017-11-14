@@ -12,20 +12,20 @@ Create directory:
 mkdir ~/data
 ```
 
-Export following environment variables:
+Put the following environment variables in `servisneinfo.env`:
 
 ```bash
-export ADMIN_EMAIL=admin@example.com
-export ADMIN_TOKEN=token123
-export APP_ENVIRONMENT=production
-export DATA_DIR=/path
-export EMAIL_HOST=smtp.mandrillapp.com
-export EMAIL_PASS=myapikey
-export EMAIL_USER=user@example.com
-export MONGODB_URI=uri
-export S3_ACCESS_KEY=key
-export S3_ACCESS_SECRET=secret
-export SENTRY_DSN=url
+ADMIN_EMAIL=admin@example.com
+ADMIN_TOKEN=token123
+APP_ENVIRONMENT=production
+DATA_DIR=/path
+EMAIL_HOST=smtp.mandrillapp.com
+EMAIL_PASS=myapikey
+EMAIL_USER=user@example.com
+MONGODB_URI=uri
+S3_ACCESS_KEY=key
+S3_ACCESS_SECRET=secret
+SENTRY_DSN=url
 ```
 
 ## Production Setup
@@ -84,6 +84,7 @@ Type=simple
 User=servisneinfo
 Group=servisneinfo
 WorkingDirectory=/home/servisneinfo/servisne.info
+EnvironmentFile=/home/servisneinfo/servisneinfo.env
 ExecStart=/bin/bash -lc 'lein with-profile production trampoline ring server 8080'
 Restart=always
 
