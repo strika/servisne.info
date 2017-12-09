@@ -33,7 +33,8 @@
             (event/record "User signed up" {:email email})))))))
 
 (defn users-create [email streets river]
-  (if (and email (= (lower-case river) "dunav"))
-    (create-or-update-user email streets))
-  (layout/render "users/create.html"
-                 {:email email :streets streets}))
+  (let [success (and email (= (lower-case (trim river)) "dunav"))]
+    (if success
+      (create-or-update-user email streets))
+    (layout/render "users/create.html"
+                   {:email email :streets streets :success success})))
