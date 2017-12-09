@@ -16,7 +16,7 @@
   (GET "/about" [] (pages/about-page))
   (GET "/contact" [] (pages/contact-page))
   (GET "/terms" [] (pages/terms-page))
-  (POST "/users/create" [email streets] (users/users-create email streets))
+  (POST "/users/create" [email streets river] (users/users-create email streets river))
   (GET "/users/delete" [email] (users/users-delete email))
   (POST "/users/destroy" [email] (users/users-destroy email))
   (GET "/" [] (pages/home-page))

@@ -32,8 +32,8 @@
             (notifications/send-registration-confirmation-email user)
             (event/record "User signed up" {:email email})))))))
 
-(defn users-create [email streets]
-  (if email
+(defn users-create [email streets river]
+  (if (and email (= (lower-case river) "dunav"))
     (create-or-update-user email streets))
   (layout/render "users/create.html"
                  {:email email :streets streets}))
