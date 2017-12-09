@@ -1,5 +1,5 @@
 (ns servisne-info.controllers.users
-  (:require [clojure.string :refer [join trim split]]
+  (:require [clojure.string :refer [join trim split lower-case]]
             [noir.response :as response]
             [servisne-info.event :as event]
             [servisne-info.notifications :as notifications]
