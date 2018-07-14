@@ -1,7 +1,7 @@
 (defproject servisne-info "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.6.0"]
                  [clj-aws-s3 "0.3.10"]
                  [clj-time "0.9.0"]
                  [com.draines/postal "1.11.3"]
