@@ -4,8 +4,8 @@
 
 (deftest format-data-test
   (let [data (l/format-data {:username "john" :email "john@example.com"})]
-    (is (= data
-           " username='john' email='john@example.com'"))))
+    (is (.contains data "username='john'"))
+    (is (.contains data "email='john@example.com'"))))
 
 (deftest format-message-test
   (let [message (l/format-message "New user" {:email "john@example.com"})]
